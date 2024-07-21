@@ -1,0 +1,158 @@
+{
+  description = "NixOS configuration";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    flake-utils.url = "github:numtide/flake-utils";
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
+  outputs = inputs@{ nixpkgs, flake-utils, home-manager, rust-overlay, ... }: {
+    nixosConfigurations = {
+      nixos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = let credentials = import ./pub_credentials.nix;
+        in [
+          ./configuration.nix
+
+          home-manager.nixosModules.default
+          {
+            # HOME MANAGER
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
+            home-manager.users.${credentials.userName} = import ./home.nix;
+          }
+
+          ({ pkgs, ... }: {
+            ################################## Configs ########################################
+
+            # Enable zRAM for better memory performance.
+            zramSwap.enable = true;
+
+            # Binary Cache for Haskell.nix
+            nix.settings.trusted-public-keys =
+              [ "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=" ];
+            nix.settings.substituters = [ "https://cache.iog.io" ];
+
+            # Enable fish shell.
+            programs.fish.enable = true;
+
+            # Define a user account. Don't forget to set a password with ‘passwd’.
+            users.users.${credentials.userName} = {
+              shell = pkgs.fish;
+              isNormalUser = true;
+              description = credentials.description;
+              extraGroups = [ "networkmanager" "wheel" ];
+              #packages = with pkgs; [];
+            };
+
+            networking.hostName = credentials.hostName;
+
+            # Allow unfree packages
+            nixpkgs.config.allowUnfree = true;
+
+            # Install & enable firefox.
+            programs.firefox.enable = true;
+
+            # Install flatpak & enable flatpak.
+            services.flatpak.enable = true;
+
+            # Install direnv and enable for development.
+            programs.direnv.enable = true;
+
+            nixpkgs.overlays = [
+              # We use community maintained rust toolchains.
+              rust-overlay.overlays.default
+            ];
+
+            ################################## Configs ########################################
+
+            environment.systemPackages = with pkgs; [
+              # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+
+              # programming language toolings
+              # python3: do I need this? For some reason, having python in PATH in my previous OSes
+              # will always slow things down.
+              # ehh, just `nix shell nixpkgs#python3` if I ever need it.
+
+              # editors
+              emacs
+              vim
+
+              # Also check /etc/nixos/home.nix for more user env packages.
+
+              # sysinfo
+              neofetch
+              pciutils
+              usbutils
+              sysstat
+              btop
+
+              # archives
+              zip
+              xz
+              unzip
+              p7zip
+              rar
+              unrar
+              gnupg
+              zstd
+
+              # utils
+              pinentry-gnome3
+              pinentry-curses
+              ripgrep # recursively searches directories for a regex pattern
+              jq # A lightweight and flexible command-line JSON processor
+              eza # A modern replacement for ‘ls’
+              fzf # A command-line fuzzy finder
+              shellcheck # Shell linter
+              tree # List directory recursively as a tree view
+              file # Show file info.
+              glow # TUI markdown previewer
+              tmux # TTY multiplexer
+              transmission
+              transmission-gtk
+
+              # networking tools
+              nmap # A utility for network discovery and security auditing
+              mutt
+              irssi
+              curl # fetch
+              wget
+              rsync
+
+              # passwords security
+              keepassxc
+              gnupg
+
+              # emergency browser
+              lynx
+
+              # gnome apps
+              gnome.eog
+
+              # gnome extensions
+              gnomeExtensions.tiling-assistant
+              gnomeExtensions.clipboard-history
+
+              # devel
+              openssl # do I need this at global level?
+              pkg-config # do I need this at global level?
+              git
+              gitui
+              gnumake
+              llvmPackages_18.clangUseLLVM
+            ];
+
+          })
+        ];
+      };
+    };
+  };
+}
