@@ -1,124 +1,111 @@
 { config, pkgs, ... }:
 
-let credentials = import ./pub_credentials.nix;
-in {
+let credentials = import ./pub_credentials.nix; in rec {
 
   # Packages that should be installed to the user profile.
-  home.packages = with pkgs; [
-    # Programming language toolings
+      home.packages = with pkgs; [
 
-    octaveFull
+                    # Programming language toolings
 
-    # BEAM
-    gleam
-    elixir
-    erlang
+                    octaveFull
 
-    # racket
-    racket
+                    # racket
+                    racket
 
-    ### NIX TOOLS
-    nixfmt # nix code formatter
+                    ### NIX TOOLS
+                    nixfmt-rfc-style # nix code formatter
+                    
+                    # dhall
+                    dhall
+                    dhall-nix
+                    dhall-json
+                    dhall-docs
 
-    # dhall
-    dhall
-    dhall-nix
-    dhall-json
-    dhall-yaml
-    dhall-docs
+                    ### NIX TOOLS
 
-    # nickel: probably a more modern and pragmatic replacement for nix lang (soon TM).
-    # too bad it ain't total, but devops are full of unknown variables anyways.
-    # people won't like really strict one like dhall or too lenient like nix or bash.
-    nickel
+                    ## proof assistants
+                    lean4
+                    coq
 
-    ### NIX TOOLS
+                    # rust
+                    rust-bin.stable.latest.default
 
-    ## proof assistants
-    lean4
-    coq
-    coq2html
-    coqPackages.stdpp
-    agda
+                    # haskell
+                    cabal-install
+                    ghc
+                    ghcid
 
-    # rust
-    rust-bin.stable.latest.default
+                    # media
+                    okular
+                    syncplay
+                    mpv
+                    audacious
+                    gimp
+                    krita
+                    yt-dlp
+                    tiled
 
-    # haskell
-    cabal-install
-    ghc
-    ghcid
+                    # docs
+                    pandoc
 
-    # media
-    syncplay
-    mpv
-    audacious
-    fluidsynth
-    gimp
-    krita
-    yt-dlp
-    tiled
+                    # database
+                    sqlite
+                    konsole
 
-    # docs
-    pandoc
+                    # editors
+                    vscode-fhs
 
-    # database
-    sqlite
+                    # shells
+                    fish
 
-    # editors
-    vscode
+                    # browsers (other than firefox)
+                    tor-browser
 
-    # shells
-    fish
-    # should I get oh-my-fish from nixpkgs too?
+                    # office
+                    libreoffice-qt6-fresh
+                    texstudio
+                    texliveFull
 
-    # browsers (other than firefox)
-    tor-browser
+                    # networking tools
 
-    # office
-    libreoffice-qt6-fresh
-    texstudio
-    texliveFull
+                    # games
+                    minetest
+                    lutris
+                    wineWowPackages.stable
+                    winetricks
+      ];
 
-    # networking tools
 
-    # games
-    minetest
-    lutris
-    wineWowPackages.stable
-    winetricks
+      home.username = credentials.userName;
+      home.homeDirectory = "/home/${credentials.userName}";
 
-    # minetest-devel
-    lua51Packages.fennel
-    fnlfmt
-  ];
+      home.sessionPath = [
+        "$HOME/.local/bin"
+      ];
 
-  home.username = credentials.userName;
-  home.homeDirectory = "/home/${credentials.userName}";
+      home.sessionVariables = {
+        EDITOR = "vim";
+      };
 
-  home.sessionPath = [ "$HOME/.local/bin" ];
+      home.shellAliases = {
+        "gc" = "git clone";
+        "gs" = "git status";
+        "gd" = "git diff";
+        "list-generations" = "nix profile history --profile /nix/var/nix/profiles/system";
+      };
 
-  home.sessionVariables = { EDITOR = "vim"; };
+      programs.ssh = {
+        enable = true;
+      };
 
-  home.shellAliases = {
-    "gc" = "git clone";
-    "gs" = "git status";
-    "gd" = "git diff";
-    "list-generations" =
-      "nix profile history --profile /nix/var/nix/profiles/system";
-  };
+      services.gnome-keyring.enable = true;
+      programs.gpg.enable = true;
+      services.gpg-agent = {
+        enable = true;
+        pinentryPackage = pkgs.pinentry-gnome3;
+      };
 
-  programs.ssh = {
-    enable = true;
-    addKeysToAgent = "yes";
-  };
-
-  services.gnome-keyring.enable = true;
-  programs.gpg.enable = true;
-  services.gpg-agent = {
-    enable = true;
-    pinentryPackage = pkgs.pinentry-gnome3;
-  };
+      programs.autojump.enable = true;
 
   # basic configuration of git, please change to your own
   programs.git = {
@@ -129,11 +116,17 @@ in {
       key = credentials.gpgFingerprint;
       signByDefault = true;
     };
-    extraConfig = { init = { defaultbranch = "main"; }; };
+    extraConfig = {
+      init = {
+        defaultbranch = "main";
+      };
+    };
   };
 
   # Install direnv and enable for development.
-  programs.direnv = { enable = true; };
+  programs.direnv = {
+    enable = true;
+  };
 
   programs.bash = {
     enable = true;
@@ -145,6 +138,7 @@ in {
     # Don't do that shell init greetings ever again!
     interactiveShellInit = "set fish_greeting";
   };
+
 
   programs.gnome-shell = {
     enable = true;

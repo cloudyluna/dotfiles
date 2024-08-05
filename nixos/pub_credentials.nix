@@ -1,10 +1,8 @@
 # Public credentials.
 {
-  # Change all the variables here to your liking.
   userName = "cloudyluna";
-  userEmail = "";
+  userEmail = "luna.cloudberry@proton.me";
   description = "Luna";
   hostName = "nixos";
-  # public GPG signature/fingerprint
-  gpgFingerprint = "";
+  gpgFingerprint = "321BB0914E1D85BC";
 }
