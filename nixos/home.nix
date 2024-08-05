@@ -1,111 +1,111 @@
 { config, pkgs, ... }:
 
-let credentials = import ./pub_credentials.nix; in rec {
+let
+  credentials = import ./pub_credentials.nix;
+in
+rec {
 
   # Packages that should be installed to the user profile.
-      home.packages = with pkgs; [
+  home.packages = with pkgs; [
 
-                    # Programming language toolings
+    # Programming language toolings
 
-                    octaveFull
+    octaveFull
 
-                    # racket
-                    racket
+    # racket
+    racket
 
-                    ### NIX TOOLS
-                    nixfmt-rfc-style # nix code formatter
-                    
-                    # dhall
-                    dhall
-                    dhall-nix
-                    dhall-json
-                    dhall-docs
+    ### NIX TOOLS
+    nixfmt-rfc-style # nix code formatter
 
-                    ### NIX TOOLS
+    # dhall
+    dhall
+    dhall-nix
+    dhall-json
+    dhall-docs
 
-                    ## proof assistants
-                    lean4
-                    coq
+    ### NIX TOOLS
 
-                    # rust
-                    rust-bin.stable.latest.default
+    ## proof assistants
+    lean4
+    coq
 
-                    # haskell
-                    cabal-install
-                    ghc
-                    ghcid
+    # rust
+    rust-bin.stable.latest.default
 
-                    # media
-                    okular
-                    syncplay
-                    mpv
-                    audacious
-                    gimp
-                    krita
-                    yt-dlp
-                    tiled
+    # haskell
+    cabal-install
+    ghc
+    ghcid
 
-                    # docs
-                    pandoc
+    # media
+    okular
+    syncplay
+    mpv
+    audacious
+    gimp
+    krita
+    yt-dlp
+    tiled
 
-                    # database
-                    sqlite
-                    konsole
+    # docs
+    pandoc
 
-                    # editors
-                    vscode-fhs
+    # database
+    sqlite
+    konsole
 
-                    # shells
-                    fish
+    # editors
+    vscode-fhs
 
-                    # browsers (other than firefox)
-                    tor-browser
+    # shells
+    fish
 
-                    # office
-                    libreoffice-qt6-fresh
-                    texstudio
-                    texliveFull
+    # browsers (other than firefox)
+    tor-browser
 
-                    # networking tools
+    # office
+    libreoffice-qt6-fresh
+    texstudio
+    texliveFull
 
-                    # games
-                    minetest
-                    lutris
-                    wineWowPackages.stable
-                    winetricks
-      ];
+    # networking tools
 
+    # games
+    minetest
+    lutris
+    wineWowPackages.stable
+    winetricks
+  ];
 
-      home.username = credentials.userName;
-      home.homeDirectory = "/home/${credentials.userName}";
+  home.username = credentials.userName;
+  home.homeDirectory = "/home/${credentials.userName}";
 
-      home.sessionPath = [
-        "$HOME/.local/bin"
-      ];
+  home.sessionPath = [ "$HOME/.local/bin" ];
 
-      home.sessionVariables = {
-        EDITOR = "vim";
-      };
+  home.sessionVariables = {
+    EDITOR = "vim";
+  };
 
-      home.shellAliases = {
-        "gc" = "git clone";
-        "gs" = "git status";
-        "gd" = "git diff";
-        "list-generations" = "nix profile history --profile /nix/var/nix/profiles/system";
-      };
+  home.shellAliases = {
+    "gc" = "git clone";
+    "gs" = "git status";
+    "gd" = "git diff";
+    "list-generations" = "nix profile history --profile /nix/var/nix/profiles/system";
+  };
 
-      programs.ssh = {
-        enable = true;
-      };
+  programs.ssh = {
+    enable = true;
+  };
 
-      services.gnome-keyring.enable = true;
-      programs.gpg.enable = true;
-      services.gpg-agent = {
-        enable = true;
-        pinentryPackage = pkgs.pinentry-gnome3;
-      };
+  services.gnome-keyring.enable = true;
+  programs.gpg.enable = true;
+  services.gpg-agent = {
+    enable = true;
+    pinentryPackage = pkgs.pinentry-gnome3;
+  };
 
-      programs.autojump.enable = true;
+  programs.autojump.enable = true;
 
   # basic configuration of git, please change to your own
   programs.git = {
@@ -138,7 +138,6 @@ let credentials = import ./pub_credentials.nix; in rec {
     # Don't do that shell init greetings ever again!
     interactiveShellInit = "set fish_greeting";
   };
-
 
   programs.gnome-shell = {
     enable = true;
