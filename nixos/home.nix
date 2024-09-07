@@ -30,14 +30,6 @@ rec {
     lean4
     coq
 
-    # rust
-    rust-bin.stable.latest.default
-
-    # haskell
-    cabal-install
-    ghc
-    ghcid
-
     # media
     okular
     syncplay
@@ -96,13 +88,14 @@ rec {
 
   programs.ssh = {
     enable = true;
+    addKeysToAgent = "yes";
   };
 
-  services.gnome-keyring.enable = true;
+  #services.gnome-keyring.enable = true;
   programs.gpg.enable = true;
   services.gpg-agent = {
     enable = true;
-    pinentryPackage = pkgs.pinentry-gnome3;
+    pinentryPackage = pkgs.pinentry-qt;
   };
 
   programs.autojump.enable = true;
@@ -139,13 +132,13 @@ rec {
     interactiveShellInit = "set fish_greeting";
   };
 
-  programs.gnome-shell = {
-    enable = true;
-    extensions = with pkgs; [
-      { package = gnomeExtensions.tiling-assistant; }
-      { package = gnomeExtensions.clipboard-history; }
-    ];
-  };
+  #programs.gnome-shell = {
+  #  enable = true;
+  #  extensions = with pkgs; [
+  #    { package = gnomeExtensions.tiling-assistant; }
+  #    { package = gnomeExtensions.clipboard-history; }
+  #  ];
+  #};
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage

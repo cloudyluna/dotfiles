@@ -3,21 +3,18 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
     inputs@{
       nixpkgs,
+      nixpkgs-unstable,
       flake-utils,
       home-manager,
-      rust-overlay,
       ...
     }:
     {
@@ -62,6 +59,13 @@
                   # Enable fish shell.
                   programs.fish.enable = true;
 
+                  # Perform garbage collection weekly to maintain low disk usage
+                  #  nix.gc = {
+                  #    automatic = true;
+                  #    dates = "weekly";
+                  #    options = "--delete-older-than 1w";
+                  #  };
+
                   # Define a user account. Don't forget to set a password with ‘passwd’.
                   users.users.${credentials.userName} = {
                     shell = pkgs.fish;
@@ -87,7 +91,6 @@
 
                   nixpkgs.overlays = [
                     # We use community maintained rust toolchains.
-                    rust-overlay.overlays.default
                   ];
 
                   ################################## Configs ########################################
@@ -130,7 +133,7 @@
                     nix-prefetch-bzr
                     nix-prefetch-github
                     xsel
-                    pinentry-gnome3
+                    pinentry-qt
                     pinentry-curses
                     ripgrep # recursively searches directories for a regex pattern
                     jq # A lightweight and flexible command-line JSON processor
@@ -158,9 +161,6 @@
                     # emergency browser
                     lynx
 
-                    # gnome apps
-                    gnome.eog
-
                     # devel
                     openssl # do I need this at global level?
                     pkg-config # do I need this at global level?
@@ -168,6 +168,7 @@
                     gnumake
                     llvmPackages_18.clangUseLLVM
                   ];
+
                 }
               )
             ];
