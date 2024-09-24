@@ -18,17 +18,10 @@ rec {
     ### NIX TOOLS
     nixfmt-rfc-style # nix code formatter
 
-    # dhall
-    dhall
-    dhall-nix
-    dhall-json
-    dhall-docs
-
     ### NIX TOOLS
 
     ## proof assistants
     lean4
-    coq
 
     # media
     okular
@@ -36,16 +29,17 @@ rec {
     mpv
     audacious
     gimp
-    krita
     yt-dlp
-    tiled
 
     # docs
     pandoc
 
     # database
     sqlite
+
+    # terminal
     konsole
+    alacritty
 
     # editors
     vscode-fhs
@@ -58,14 +52,12 @@ rec {
 
     # office
     libreoffice-qt6-fresh
-    texstudio
     texliveFull
 
     # networking tools
 
     # games
-    minetest
-    lutris
+    ccache
     wineWowPackages.stable
     winetricks
   ];
@@ -91,13 +83,15 @@ rec {
     addKeysToAgent = "yes";
   };
 
-  #services.gnome-keyring.enable = true;
   programs.gpg.enable = true;
   services.gpg-agent = {
     enable = true;
     pinentryPackage = pkgs.pinentry-qt;
+    enableSshSupport = true;
+    defaultCacheTtl = 34560000;
+    maxCacheTtl = 34560000;
+    defaultCacheTtlSsh = 10800;
   };
-
   programs.autojump.enable = true;
 
   # basic configuration of git, please change to your own
@@ -128,17 +122,21 @@ rec {
 
   programs.fish = {
     enable = true;
-    # Don't do that shell init greetings ever again!
-    interactiveShellInit = "set fish_greeting";
-  };
+    interactiveShellInit = ''
+      # Don't do that shell init greetings ever again!
+      set fish_greeting
+    '';
 
-  #programs.gnome-shell = {
-  #  enable = true;
-  #  extensions = with pkgs; [
-  #    { package = gnomeExtensions.tiling-assistant; }
-  #    { package = gnomeExtensions.clipboard-history; }
-  #  ];
-  #};
+    loginShellInit = ''
+      # Don't show date.
+      function fish_right_prompt
+      # intentionally left blank.
+      end
+
+      # Show full `pwd` on prompt.
+      set -g fish_prompt_pwd_dir_length 0
+    '';
+  };
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage

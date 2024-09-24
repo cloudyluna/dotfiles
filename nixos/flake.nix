@@ -59,13 +59,6 @@
                   # Enable fish shell.
                   programs.fish.enable = true;
 
-                  # Perform garbage collection weekly to maintain low disk usage
-                  #  nix.gc = {
-                  #    automatic = true;
-                  #    dates = "weekly";
-                  #    options = "--delete-older-than 1w";
-                  #  };
-
                   # Define a user account. Don't forget to set a password with ‘passwd’.
                   users.users.${credentials.userName} = {
                     shell = pkgs.fish;
@@ -102,6 +95,7 @@
                     # python3: do I need this? For some reason, having python in PATH in my previous OSes
                     # will always slow things down.
                     # ehh, just `nix shell nixpkgs#python3` if I ever need it.
+                    moreutils
 
                     # editors
                     emacs
@@ -146,6 +140,7 @@
                     tmux # TTY multiplexer
                     transmission
                     transmission-gtk
+                    moreutils
 
                     # networking tools
                     nmap # A utility for network discovery and security auditing
