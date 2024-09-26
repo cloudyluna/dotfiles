@@ -9,23 +9,15 @@ rec {
   home.packages = with pkgs; [
 
     # Programming language toolings
-
-    octaveFull
-
-    # racket
-    racket
+    octave
 
     ### NIX TOOLS
     nixfmt-rfc-style # nix code formatter
 
     ### NIX TOOLS
 
-    ## proof assistants
-    lean4
-
     # media
     okular
-    syncplay
     mpv
     audacious
     gimp
@@ -52,12 +44,10 @@ rec {
 
     # office
     libreoffice-qt6-fresh
-    texliveFull
 
     # networking tools
 
     # games
-    ccache
     wineWowPackages.stable
     winetricks
   ];
