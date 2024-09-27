@@ -58,7 +58,7 @@ rec {
   home.sessionPath = [ "$HOME/.local/bin" ];
 
   home.sessionVariables = {
-    EDITOR = "vim";
+    EDITOR = "emacs -nw";
   };
 
   home.shellAliases = {
@@ -115,16 +115,6 @@ rec {
     interactiveShellInit = ''
       # Don't do that shell init greetings ever again!
       set fish_greeting
-    '';
-
-    loginShellInit = ''
-      # Don't show date.
-      function fish_right_prompt
-      # intentionally left blank.
-      end
-
-      # Show full `pwd` on prompt.
-      set -g fish_prompt_pwd_dir_length 0
     '';
   };
 

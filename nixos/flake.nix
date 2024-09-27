@@ -138,7 +138,6 @@
                     tmux # TTY multiplexer
                     transmission
                     transmission-gtk
-                    moreutils
 
                     # networking tools
                     nmap # A utility for network discovery and security auditing
@@ -159,6 +158,7 @@
                     pkg-config # do I need this at global level?
                     git
                     gnumake
+                    ccache
                     llvmPackages_18.clangUseLLVM
                   ];
 
