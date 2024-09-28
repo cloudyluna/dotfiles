@@ -11,7 +11,8 @@
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes '(tango-dark))
  '(inhibit-startup-screen t)
- '(package-selected-packages '(nix-mode vlf direnv fennel-mode smex nyan-mode)))
+ '(package-selected-packages
+   '(company lsp-haskell lsp-mode direnv eglot haskell-mode magit nix-mode nickel-mode vlf fennel-mode smex nyan-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -33,4 +34,7 @@
 (global-display-line-numbers-mode)
 (require 'vlf-setup)
 
+(setq make-backup-files nil) ; stop creating ~ files
+(setq create-lockfiles nil)
 
+(direnv-mode)
