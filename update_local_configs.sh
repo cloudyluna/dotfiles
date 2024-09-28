@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+cp -f /etc/nixos/flake.nix ./nixos/
+cp -f /etc/nixos/flake.lock ./nixos
+cp -f /etc/nixos/home.nix ./nixos
+cp -f /etc/nixos/pub_credentials.nix ./nixos
+
+if [[ -z "$(command -v nixfmt)" ]]
+then
+    exit
+else
+    nixfmt ./nixos/*.nix
+fi
+
+cp -f "$HOME/.emacs" .
+
+exit
