@@ -12,7 +12,7 @@
  '(custom-enabled-themes '(tango-dark))
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(helm-swoop company lsp-haskell lsp-mode direnv eglot haskell-mode magit nix-mode nickel-mode vlf fennel-mode smex nyan-mode)))
+   '(rustic helm-swoop company lsp-haskell lsp-mode direnv eglot haskell-mode magit nix-mode nickel-mode vlf fennel-mode smex nyan-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -36,5 +36,9 @@
 
 (setq make-backup-files nil) ; stop creating ~ files
 (setq create-lockfiles nil)
+
+
+(set-face-attribute 'default nil :height 120)
+
 
 (direnv-mode)

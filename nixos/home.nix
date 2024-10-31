@@ -22,6 +22,7 @@ rec {
     audacious
     gimp
     yt-dlp
+    russ # rss/atom
 
     # docs
     pandoc
