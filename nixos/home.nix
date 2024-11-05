@@ -27,6 +27,9 @@ rec {
     # docs
     pandoc
 
+    # git compat
+    jj
+
     # database
     sqlite
 
