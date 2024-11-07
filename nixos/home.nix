@@ -62,7 +62,7 @@ rec {
   home.sessionPath = [ "$HOME/.local/bin" ];
 
   home.sessionVariables = {
-    EDITOR = "emacs -nw";
+    EDITOR = "emacs -nw --no-site-file";
   };
 
   home.shellAliases = {
