@@ -37,7 +37,7 @@ bench = false
 
 # Summoner suports 'git' version control system and GitHub as a platform for
 # hosting 'git' repos. The following set of flags controls integration with GitHub.
-github = false    # enabled GitHub integration
+github = true    # enabled GitHub integration
 noUpload = true  # Init git repo, but don't create it on GitHub
 # private = true  # create private repos by default
 gitignore =      # list of additional entries to be added in .gitignore
@@ -91,6 +91,9 @@ files =
     ,
       { path = "flake.nix"
       , local  = "/home/cloudyluna/workspace/configs/haskell/flake.nix"
+      }
+    , { path = "flake.lock"
+      , local = "/home/cloudyluna/workspace/configs/haskell/flake.lock"
       }
     , { path = ".envrc"
       , local  = "/home/cloudyluna/workspace/configs/haskell/.envrc"
