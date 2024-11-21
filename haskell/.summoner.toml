@@ -15,7 +15,7 @@ email = ""
 
 # Default OSS license for your projects.
 # Run the 'summon show license' command to see the list of supported licenses.
-license = "AGPL-3.0-only"
+license = "BSD-3-Clause"
 
 # Create projects with the Cabal support
 cabal = true
@@ -37,18 +37,18 @@ bench = false
 
 # Summoner suports 'git' version control system and GitHub as a platform for
 # hosting 'git' repos. The following set of flags controls integration with GitHub.
-github = true    # enabled GitHub integration
+github = false    # enabled GitHub integration
 noUpload = true  # Init git repo, but don't create it on GitHub
 # private = true  # create private repos by default
 gitignore =      # list of additional entries to be added in .gitignore
      [ "build"
      , "result"
-     , "dist-newstyle"
+     , "dist-*"
      , ".direnv"
      ]
 
 # Summoner supports various CI services. Uncomment those you want to use by default.
-githubActions = true  # GitHub Actions CI
+githubActions = false  # GitHub Actions CI
 travis = false         # Travis CI
 appveyor = false       # AppVeyor CI
 
@@ -73,6 +73,7 @@ extensions = [ "ConstraintKinds"
              , "ImportQualifiedPost"
              , "NoFieldSelectors"
              , "OverloadedLabels"
+             , "OverloadedStrings"
              ]
 
 # List of additional files to add after creating the project
@@ -93,6 +94,12 @@ files =
       }
     , { path = ".envrc"
       , local  = "/home/cloudyluna/workspace/configs/haskell/.envrc"
+      }
+    , { path = ".github/workflows/ci.yml"
+      , local = "/home/cloudyluna/workspace/configs/haskell/ci.yml"
+      }
+    , { path = ".gitignore"
+      , local = "/home/cloudyluna/workspace/configs/haskell/.gitignore"
       }
 #     , { path = ".github/CODEOWNERS"
 #       , raw  = "*  @kowainik"
