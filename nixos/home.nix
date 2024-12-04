@@ -15,6 +15,7 @@ rec {
     nixfmt-rfc-style # nix code formatter
 
     ### NIX TOOLS
+    shake
 
     # media
     okular
@@ -48,6 +49,7 @@ rec {
 
     # office
     libreoffice-qt6-fresh
+    drawio
 
     # networking tools
 
@@ -95,7 +97,7 @@ rec {
     userEmail = credentials.userEmail;
     signing = {
       key = credentials.gpgFingerprint;
-      signByDefault = true;
+      signByDefault = false;
     };
     extraConfig = {
       init = {
