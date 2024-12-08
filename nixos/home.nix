@@ -16,7 +16,6 @@ rec {
 
     ### NIX TOOLS
     shake
-
     # media
     okular
     mpv

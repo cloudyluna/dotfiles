@@ -31,7 +31,7 @@
                 # HOME MANAGER
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
-                home-manager.backupFileExtension = "rebuild";
+                home-manager.backupFileExtension = "backup";
                 home-manager.users.${credentials.userName} = import ./home.nix;
               }
 
@@ -136,8 +136,8 @@
                     file # Show file info.
                     glow # TUI markdown previewer
                     tmux # TTY multiplexer
-                    transmission
-                    transmission-gtk
+                    transmission_4
+                    transmission_4-gtk
 
                     # networking tools
                     nmap # A utility for network discovery and security auditing
