@@ -22,10 +22,10 @@
           modules =
             let
               credentials = import ./pub_credentials.nix;
+
             in
             [
               ./configuration.nix
-
               home-manager.nixosModules.default
               {
                 # HOME MANAGER
@@ -125,6 +125,9 @@
                     nix-prefetch-bzr
                     nix-prefetch-github
                     xsel
+                    valgrind
+                    gdb
+                    lldb
                     pinentry-qt
                     pinentry-curses
                     ripgrep # recursively searches directories for a regex pattern
