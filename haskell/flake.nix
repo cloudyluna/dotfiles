@@ -16,16 +16,18 @@
         {
           devShells.default = with pkgs; pkgs.mkShell rec {
             nativeBuildInputs = [
-              haskell.compiler.ghc96
+              haskell.compiler.ghc910
+              haskell.packages.ghc910.haskell-language-server
               haskellPackages.cabal-install
-              haskellPackages.haskell-language-server
               
               ghciwatch
+              haskellPackages.fourmolu
               haskellPackages.cabal-gild
             ];
             buildInputs = [
               pkg-config
-              upx              
+              upx
+              fuse3
             ];
 
             LD_LIBRARY_PATH = "${lib.makeLibraryPath buildInputs}";

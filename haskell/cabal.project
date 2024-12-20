@@ -1,6 +1,8 @@
 packages: .
 
 jobs: $ncpus
+semaphore: True
+multi-repl: True
 
 -- Enable haddock docs for external libraries, for LSP.
 package *
