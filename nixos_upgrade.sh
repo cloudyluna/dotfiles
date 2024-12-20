@@ -1,3 +1,6 @@
 #!/usr/bin/env bash
 
-cd /etc/nixos && sudo nix flake update && sudo nixos-rebuild switch --flake /etc/nixos
+nix-channel --update
+nix-rebuild switch
+nix flake update --flake /etc/nixos
+nixos-rebuild switch --flake /etc/nixos
