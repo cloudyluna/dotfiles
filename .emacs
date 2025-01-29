@@ -39,7 +39,7 @@
  '(custom-enabled-themes '(tango-dark))
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(elpher move-text clang-format flymake-shellcheck yaml projectile-mode restart-emacs smartparens projectile-codesearch projectile-ripgrep projectile elgrep sly neotree yaml-mode rustic helm-swoop company lsp-haskell lsp-mode direnv eglot haskell-mode magit nix-mode nickel-mode vlf smex nyan-mode)))
+   '(vterm elpher move-text clang-format flymake-shellcheck yaml projectile-mode restart-emacs smartparens projectile-codesearch projectile-ripgrep projectile elgrep sly neotree yaml-mode rustic helm-swoop company lsp-haskell lsp-mode direnv eglot haskell-mode magit nix-mode nickel-mode vlf smex nyan-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -56,6 +56,8 @@
 (use-package yaml :ensure yaml)
 (use-package nix-mode :ensure nix-mode)
 (use-package sly :ensure sly)
+;; requires libvterm, cmake and libtool
+(use-package vterm :ensure vterm)
 (defvar +prog-mode-hooks+
   '(rust-mode-hook
     haskell-mode-hook

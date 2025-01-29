@@ -100,6 +100,9 @@
 
                     # editors
                     emacs
+                    libvterm
+                    cmake
+                    libtool
                     vim
 
                     # Also check /etc/nixos/home.nix for more user env packages.
