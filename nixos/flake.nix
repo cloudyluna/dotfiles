@@ -134,7 +134,6 @@
                     xsel
                     valgrind
                     gdb
-                    lldb
                     pinentry-qt
                     pinentry-curses
                     ripgrep # recursively searches directories for a regex pattern
@@ -167,10 +166,9 @@
                     openssl # do I need this at global level?
                     pkg-config # do I need this at global level?
                     git
+                    libgcc
                     gnumake
                     ccache
-                    llvmPackages_18.clangUseLLVM
-                    clang-tools
                   ];
 
                 }

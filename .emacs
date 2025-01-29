@@ -58,7 +58,9 @@
 (use-package nix-mode :ensure nix-mode)
 (use-package sly :ensure sly)
 ;; requires libvterm, cmake and libtool
-(use-package vterm :ensure vterm)
+(use-package vterm :ensure vterm
+  :config
+  (define-key vterm-mode-map (kbd "C-q") #'vterm-send-next-key))
 (use-package multi-vterm :ensure multi-vterm)
 (defvar +prog-mode-hooks+
   '(rust-mode-hook
