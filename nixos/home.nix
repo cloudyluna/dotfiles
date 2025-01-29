@@ -63,7 +63,7 @@ rec {
   home.sessionPath = [ "$HOME/.local/bin" ];
 
   home.sessionVariables = {
-    EDITOR = "emacs -nw --no-site-file --no-init-file --no-splash --eval '(load-theme 'tango-dark t)'";
+    EDITOR = "emacs --quick --no-window-system --load $HOME/.quick-emacs.el";
   };
 
   home.shellAliases = {

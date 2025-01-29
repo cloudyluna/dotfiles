@@ -12,6 +12,10 @@ else
     nixfmt ./nixos/*.nix
 fi
 
+cp -f "$HOME/.local/bin/giadd.sh" .
+cp -f "$HOME/.local/bin/signed_giadd.sh" .
 cp -f "$HOME/.emacs" .
+cp -f "$HOME/.quick-emacs.el" .
+cp -f "$HOME/.summoner.toml" ./haskell
 
 exit
