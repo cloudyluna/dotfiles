@@ -77,6 +77,9 @@
                   # Install & enable firefox.
                   programs.firefox.enable = true;
 
+                  # steam
+                  #programs.steam.enable = true;
+
                   # Install flatpak & enable flatpak.
                   services.flatpak.enable = true;
 
@@ -119,6 +122,7 @@
                     zstd
 
                     # utils
+                    devenv
                     nix-prefetch
                     nix-prefetch-git
                     nix-prefetch-hg
@@ -163,6 +167,7 @@
                     gnumake
                     ccache
                     llvmPackages_18.clangUseLLVM
+                    clang-tools
                   ];
 
                 }

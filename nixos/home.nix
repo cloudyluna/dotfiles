@@ -9,7 +9,8 @@ rec {
   home.packages = with pkgs; [
 
     # Programming language toolings
-    octave
+    octaveFull
+    gnuplot_qt
 
     ### NIX TOOLS
     nixfmt-rfc-style # nix code formatter
@@ -28,6 +29,7 @@ rec {
     pandoc
 
     # git compat
+    mutt
     jj
 
     # database
@@ -51,8 +53,6 @@ rec {
     drawio
 
     # networking tools
-
-    # games
     wineWowPackages.stable
     winetricks
   ];
@@ -63,7 +63,7 @@ rec {
   home.sessionPath = [ "$HOME/.local/bin" ];
 
   home.sessionVariables = {
-    EDITOR = "emacs -nw --no-site-file";
+    EDITOR = "emacs -nw --no-site-file --no-init-file --no-splash --eval '(load-theme 'tango-dark t)'";
   };
 
   home.shellAliases = {
