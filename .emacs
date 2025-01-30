@@ -57,18 +57,28 @@
 (use-package yaml :ensure yaml)
 (use-package nix-mode :ensure nix-mode)
 (use-package sly :ensure sly)
+
+
+(defun augment-vterm (x)
+  (message "%s" "Warning: this command has been \"advised\" in $HOME/.emacs")
+  (setq display-line-numbers nil))
+
 ;; requires libvterm, cmake and libtool
 (use-package vterm :ensure vterm
   :config
-  (define-key vterm-mode-map (kbd "C-q") #'vterm-send-next-key))
-(use-package multi-vterm :ensure multi-vterm)
-(defvar +prog-mode-hooks+
+  (define-key vterm-mode-map (kbd "C-q") #'vterm-send-next-key)
+  (advice-add
+   'vterm
+   :filter-return
+   #'augment-vterm))
+(use-package multi-vterm :ensure multi-vterm
+  :config (advice-add 'multi-vterm :filter-return #'augment-vterm))
+(defconst +prog-mode-hooks+
   '(rust-mode-hook
     haskell-mode-hook
     sh-mode-hook
     c-mode-hook
-    c++-mode-hook
-    lisp-mode-hook))
+    c++-mode-hook))
 (use-package neotree :ensure neotree)
 (use-package projectile
   :ensure projectile
@@ -101,8 +111,7 @@
   (direnv-mode))
 (use-package company
   :ensure company
-  :config (add-hook 'after-init-hook 'global-company-mode)
-  :hook (prog-))
+  :config (add-hook 'after-init-hook 'global-company-mode))
 (use-package move-text :ensure move-text
   :defer t
   :config (move-text-default-bindings))

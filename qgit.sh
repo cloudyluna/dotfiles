@@ -1,3 +1,3 @@
-#!/usr/env/bash
+#!/usr/bin/env bash
 
 git add "$@" && git commit -m "[quick-commit]"
