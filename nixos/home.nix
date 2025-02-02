@@ -94,14 +94,13 @@ rec {
     enable = true;
     userName = credentials.userName;
     userEmail = credentials.userEmail;
-    signing = {
-      key = credentials.gpgFingerprint;
-      signByDefault = false;
-    };
     extraConfig = {
       init = {
         defaultbranch = "main";
       };
+      gpg.format = "ssh";
+      user.signingkey = "${home.homeDirectory}/.ssh/id_ed25519.pub";
+      commit.gpgsign = true;
     };
   };
 

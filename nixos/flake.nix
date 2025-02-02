@@ -89,6 +89,7 @@
 
                   ################################## Configs ########################################
 
+                  environment.sessionVariables.NIXOS_OZONE_WL = "1";
                   environment.systemPackages = with pkgs; [
                     # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
 
@@ -97,6 +98,9 @@
                     # will always slow things down.
                     # ehh, just `nix shell nixpkgs#python3` if I ever need it.
                     moreutils
+
+                    # extra browsers
+                    chromium
 
                     # editors
                     emacs
@@ -147,6 +151,7 @@
                     tmux # TTY multiplexer
                     transmission_4
                     transmission_4-gtk
+                    xclip
 
                     # networking tools
                     nmap # A utility for network discovery and security auditing

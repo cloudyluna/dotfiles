@@ -126,7 +126,10 @@
 (use-package elpher :ensure elpher :defer t)
 
 ;; LSP/EGLOT/Programming env
-(use-package rustic :ensure rustic)
+(use-package rustic :ensure rustic
+  :config
+  (add-hook 'before-save-hook #'rustic-format-file)
+  (add-to-list 'direnv-non-file-modes 'rustic-mode))
 (use-package haskell-mode :ensure haskell-mode)
 (use-package lsp-haskell :ensure lsp-haskell)
 (use-package flymake-shellcheck
