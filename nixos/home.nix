@@ -31,6 +31,8 @@ rec {
     # git compat
     mutt
     jj
+    taskwarrior3
+    taskwarrior-tui
 
     # database
     sqlite
@@ -44,6 +46,9 @@ rec {
 
     # shells
     fish
+
+    # moneh
+    gnucash
 
     # browsers (other than firefox)
     tor-browser
@@ -60,7 +65,10 @@ rec {
   home.username = credentials.userName;
   home.homeDirectory = "/home/${credentials.userName}";
 
-  home.sessionPath = [ "$HOME/.local/bin" ];
+  home.sessionPath = [
+    "${home.homeDirectory}/.local/bin"
+    "${home.homeDirectory}/.cargo/bin"
+  ];
 
   home.sessionVariables = {
     EDITOR = "emacs --quick --no-window-system --load $HOME/.quick-emacs.el";
@@ -78,18 +86,8 @@ rec {
     addKeysToAgent = "yes";
   };
 
-  programs.gpg.enable = true;
-  services.gpg-agent = {
-    enable = true;
-    pinentryPackage = pkgs.pinentry-qt;
-    enableSshSupport = true;
-    defaultCacheTtl = 34560000;
-    maxCacheTtl = 34560000;
-    defaultCacheTtlSsh = 10800;
-  };
   programs.autojump.enable = true;
 
-  # basic configuration of git, please change to your own
   programs.git = {
     enable = true;
     userName = credentials.userName;
@@ -98,7 +96,10 @@ rec {
       init = {
         defaultbranch = "main";
       };
-      gpg.format = "ssh";
+      gpg = {
+        format = "ssh";
+        ssh.allowedSignersFile = "${home.homeDirectory}/.ssh/allowed_signers";
+      };
       user.signingkey = "${home.homeDirectory}/.ssh/id_ed25519.pub";
       commit.gpgsign = true;
     };

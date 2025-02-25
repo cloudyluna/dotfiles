@@ -89,9 +89,6 @@
 (use-package neotree :ensure neotree)
 (use-package projectile
   :ensure projectile
-  :hook (apply 'prog-mode +prog-mode-hooks+)
-  :init
-  (projectile-mode +1)
   :config
   (use-package projectile-ripgrep :ensure projectile-ripgrep)
   (use-package projectile-codesearch :ensure projectile-codesearch)
