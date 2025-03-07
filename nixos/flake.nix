@@ -77,8 +77,7 @@
                   # Install & enable firefox.
                   programs.firefox.enable = true;
 
-                  # steam
-                  #programs.steam.enable = true;
+                  programs.steam.enable = true;
 
                   # Install flatpak & enable flatpak.
                   services.flatpak.enable = true;
