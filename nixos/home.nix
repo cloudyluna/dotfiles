@@ -22,8 +22,10 @@ rec {
     mpv
     audacious
     gimp
+    kdePackages.kclock
     yt-dlp
     russ # rss/atom
+    syncplay
 
     # docs
     pandoc
