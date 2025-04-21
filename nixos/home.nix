@@ -26,6 +26,7 @@ rec {
     yt-dlp
     russ # rss/atom
     syncplay
+    gitui
 
     # docs
     pandoc
