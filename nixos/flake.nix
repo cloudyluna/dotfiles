@@ -103,6 +103,7 @@
 
                     # editors
                     emacs
+                    zed-editor
                     libvterm
                     cmake
                     libtool
