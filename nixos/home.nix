@@ -49,6 +49,7 @@ rec {
 
     # shells
     fish
+    gh
 
     # moneh
     gnucash
