@@ -16,7 +16,6 @@ rec {
     nixfmt-rfc-style # nix code formatter
 
     ### NIX TOOLS
-    shake
     # media
     okular
     mpv
@@ -56,6 +55,7 @@ rec {
 
     # browsers (other than firefox)
     tor-browser
+    epiphany
 
     # office
     libreoffice-qt6-fresh
