@@ -2,9 +2,9 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     flake-utils.url = "github:numtide/flake-utils";
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -44,15 +44,10 @@
                   # Enable zRAM for better memory performance.
                   zramSwap.enable = true;
 
-                  # Binary Cache for Haskell.nix
-                  /*
-                    nix.settings.trusted-public-keys = [
-                      "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
-                    ];
-                    nix.settings.substituters = [
-                      "https://cache.iog.io"
-                    ];
-                  */
+                  programs.appimage = {
+                    enable = true;
+                    binfmt = true;
+                  };
 
                   # Enable fish shell.
                   programs.fish.enable = true;

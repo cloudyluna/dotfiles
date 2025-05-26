@@ -17,7 +17,7 @@ rec {
 
     ### NIX TOOLS
     # media
-    okular
+    kdePackages.okular
     mpv
     audacious
     gimp
@@ -40,7 +40,7 @@ rec {
     sqlite
 
     # terminal
-    konsole
+    kdePackages.konsole
     alacritty
 
     # editors
