@@ -20,7 +20,7 @@ rec {
     kdePackages.okular
     mpv
     audacious
-    gimp
+    gimp3
     kdePackages.kclock
     yt-dlp
     russ # rss/atom
@@ -32,7 +32,7 @@ rec {
 
     # git compat
     mutt
-    jj
+    jujutsu
     taskwarrior3
     taskwarrior-tui
 

@@ -18,5 +18,7 @@ cp -f "$HOME/.local/bin/qgit.sh" .
 cp -f "$HOME/.emacs" .
 cp -f "$HOME/.quick-emacs.el" .
 cp -f "$HOME/.summoner.toml" ./haskell
+cp -f "$HOME/.config/alacritty/alacritty.toml" .
+cp -f "$HOME/.tmux.conf" .
 
 exit
