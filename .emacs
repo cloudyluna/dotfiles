@@ -20,7 +20,7 @@
 
   (add-hook 'text-mode #'display-fill-column-indicator-mode)
   (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
-  (setopt display-fill-column-indicator-column 80)
+  (setopt display-fill-column-indicator-column t)
   (setq default-directory (format "%s/workspace/" (getenv "HOME"))))
 
 (setup-basic-configurations)
@@ -40,7 +40,13 @@
  '(custom-enabled-themes '(tango-dark))
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(multi-vterm vterm elpher move-text clang-format flymake-shellcheck yaml projectile-mode restart-emacs smartparens projectile-codesearch projectile-ripgrep projectile elgrep sly neotree yaml-mode rustic helm-swoop company lsp-haskell lsp-mode direnv eglot haskell-mode magit nix-mode nickel-mode vlf smex nyan-mode)))
+   '(clang-format company direnv eglot elgrep elpher flymake-shellcheck
+                  haskell-mode helm-swoop lsp-haskell lsp-mode
+                  lua-mode magit move-text multi-vterm neotree
+                  nickel-mode nix-mode nyan-mode projectile
+                  projectile-codesearch projectile-mode
+                  projectile-ripgrep restart-emacs rustic sly
+                  smartparens smex vlf vterm yaml yaml-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
