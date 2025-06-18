@@ -32,9 +32,10 @@
               openssl
               valgrind
               upx
-              glibc
+              clang
+              lldb
 
-              (rust-bin.stable."1.84.1".default.override {
+              (rust-bin.stable."1.87.0".default.override {
                 extensions = [ "rust-docs" ];
                 targets = [
                   "i686-unknown-linux-gnu"
