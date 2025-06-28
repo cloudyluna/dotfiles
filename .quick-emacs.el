@@ -11,7 +11,7 @@
 (global-display-line-numbers-mode)
 (add-hook 'text-mode #'display-fill-column-indicator-mode)
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
-(setopt display-fill-column-indicator 80)
+(setopt display-fill-column-indicator t)
 (display-fill-column-indicator-mode)
 
 ;;; .quick-emacs.el ends here

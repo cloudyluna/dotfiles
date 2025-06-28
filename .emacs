@@ -9,6 +9,9 @@
   (setq column-number-mode t)
   (global-display-line-numbers-mode)
 
+                                        
+  (setq ring-bell-function 'ignore) ; shush the annoying bell sound
+
 
   (setq make-backup-files nil) ; stop creating ~ files
   (setq create-lockfiles nil)
