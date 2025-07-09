@@ -1,5 +1,5 @@
 {
-  description = "";
+  description = "A flake file for Rust's reproducible system";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";

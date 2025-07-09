@@ -75,7 +75,7 @@ rec {
   ];
 
   home.sessionVariables = {
-    EDITOR = "emacs --quick --no-window-system --load $HOME/.quick-emacs.el";
+    EDITOR = "emacs --no-window-system --load $HOME/.quick-emacs.el";
   };
 
   home.shellAliases = {

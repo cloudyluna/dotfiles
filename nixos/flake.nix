@@ -93,9 +93,6 @@
                     # ehh, just `nix shell nixpkgs#python3` if I ever need it.
                     moreutils
 
-                    # extra browsers
-                    chromium
-
                     # editors
                     emacs
                     zed-editor
@@ -124,7 +121,6 @@
                     zstd
 
                     # utils
-                    devenv
                     nix-prefetch
                     nix-prefetch-git
                     nix-prefetch-hg
