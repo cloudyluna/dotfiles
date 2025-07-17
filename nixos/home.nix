@@ -94,8 +94,8 @@ rec {
 
   programs.git = {
     enable = true;
-    userName = credentials.userName;
-    userEmail = credentials.userEmail;
+    userName = credentials.momoUserName;
+    userEmail = credentials.momoUserEmail;
     extraConfig = {
       init = {
         defaultbranch = "main";
@@ -104,7 +104,7 @@ rec {
         format = "ssh";
         ssh.allowedSignersFile = "${home.homeDirectory}/.ssh/allowed_signers";
       };
-      user.signingkey = "${home.homeDirectory}/.ssh/id_ed25519.pub";
+      user.signingkey = "${home.homeDirectory}/.ssh/id_momo.pub";
       commit.gpgsign = true;
     };
   };
