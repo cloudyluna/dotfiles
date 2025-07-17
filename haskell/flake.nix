@@ -23,11 +23,13 @@
               ghciwatch
               haskellPackages.fourmolu
               haskellPackages.cabal-gild
+              
+              sqlite
             ];
             buildInputs = [
               pkg-config
               upx
-              fuse3
+              zlib
             ];
 
             LD_LIBRARY_PATH = "${lib.makeLibraryPath buildInputs}";
