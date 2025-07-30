@@ -72,8 +72,6 @@
                   # Install & enable firefox.
                   programs.firefox.enable = true;
 
-                  programs.steam.enable = true;
-
                   # Install flatpak & enable flatpak.
                   services.flatpak.enable = true;
 
@@ -95,7 +93,6 @@
 
                     # editors
                     emacs
-                    zed-editor
                     libvterm
                     cmake
                     libtool
@@ -117,7 +114,6 @@
                     p7zip
                     rar
                     unrar
-                    gnupg
                     zstd
 
                     # utils

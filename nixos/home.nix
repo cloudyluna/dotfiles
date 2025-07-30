@@ -2,6 +2,10 @@
 
 let
   credentials = import ./pub_credentials.nix;
+  myKDEPackages = with pkgs.kdePackages; [
+    okular
+    kclock
+  ];
 in
 rec {
 
@@ -9,29 +13,21 @@ rec {
   home.packages = with pkgs; [
 
     # Programming language toolings
-    octaveFull
     gnuplot_qt
 
     ### NIX TOOLS
     nixfmt-rfc-style # nix code formatter
 
-    ### NIX TOOLS
     # media
-    kdePackages.okular
     mpv
     audacious
     gimp3
-    kdePackages.kclock
     yt-dlp
     russ # rss/atom
     syncplay
     gitui
 
-    # docs
-    pandoc
-
     # git compat
-    mutt
     jujutsu
     taskwarrior3
     taskwarrior-tui
@@ -40,7 +36,6 @@ rec {
     sqlite
 
     # terminal
-    kdePackages.konsole
     alacritty
 
     # editors
@@ -75,7 +70,7 @@ rec {
   ];
 
   home.sessionVariables = {
-    EDITOR = "emacs --no-window-system --load $HOME/.quick-emacs.el";
+    EDITOR = "emacs -Q --no-window-system --load $HOME/.quick-emacs.el";
   };
 
   home.shellAliases = {
