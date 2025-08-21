@@ -36,18 +36,27 @@
               }
 
               (
-                { pkgs, ... }:
+                { pkgs, lib, ... }:
                 {
                   ################################## Configs ########################################
                   programs.ssh.startAgent = true;
 
                   # Enable zRAM for better memory performance.
                   zramSwap.enable = true;
+                  programs.steam.enable = true;
+
+                  fonts.packages = with pkgs; [
+                    fira-code
+                    fira-math
+                  ];
 
                   programs.appimage = {
                     enable = true;
                     binfmt = true;
                   };
+
+                  # niri - a tilling window manager
+                  programs.niri.enable = true;
 
                   # Enable fish shell.
                   programs.fish.enable = true;
@@ -80,6 +89,19 @@
                   ];
 
                   ################################## Configs ########################################
+
+                  # Keep flake sources that are present with unremoved generations.
+                  # To remove, run nixos-clean.sh 1d
+                  environment.etc = builtins.listToAttrs (
+                    builtins.map (
+                      input:
+                      lib.attrsets.nameValuePair "sources/${input}" {
+                        enable = true;
+                        source = inputs.${input};
+                        mode = "symlink";
+                      }
+                    ) (builtins.attrNames inputs)
+                  );
 
                   environment.sessionVariables.NIXOS_OZONE_WL = "1";
                   environment.systemPackages = with pkgs; [
@@ -117,6 +139,8 @@
                     zstd
 
                     # utils
+                    cron
+                    yazi # TUI file manager
                     nix-prefetch
                     nix-prefetch-git
                     nix-prefetch-hg
