@@ -6,6 +6,7 @@
     flake-utils.url = "github:numtide/flake-utils";
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    niri.url = "github:sodiboo/niri-flake";
   };
 
   outputs =
@@ -13,6 +14,7 @@
       nixpkgs,
       flake-utils,
       home-manager,
+      niri,
       ...
     }:
     {
@@ -32,13 +34,24 @@
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.backupFileExtension = "backup";
-                home-manager.users.${credentials.userName} = import ./home.nix;
+                home-manager.users.${credentials.userName} =
+                  { pkgs, ... }:
+                  {
+                    imports = [
+                      ./home.nix
+                      inputs.niri.homeModules.niri
+                      ./niri.nix
+                    ];
+                  };
               }
 
               (
                 { pkgs, lib, ... }:
                 {
                   ################################## Configs ########################################
+
+                  programs.niri.enable = true;
+
                   programs.ssh.startAgent = true;
 
                   # Enable zRAM for better memory performance.
@@ -48,15 +61,13 @@
                   fonts.packages = with pkgs; [
                     fira-code
                     fira-math
+                    font-awesome
                   ];
 
                   programs.appimage = {
                     enable = true;
                     binfmt = true;
                   };
-
-                  # niri - a tilling window manager
-                  programs.niri.enable = true;
 
                   # Enable fish shell.
                   programs.fish.enable = true;
@@ -85,7 +96,7 @@
                   services.flatpak.enable = true;
 
                   nixpkgs.overlays = [
-                    # We use community maintained rust toolchains.
+                    inputs.niri.overlays.niri
                   ];
 
                   ################################## Configs ########################################

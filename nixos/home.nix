@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 let
   credentials = import ./pub_credentials.nix;
@@ -13,6 +18,9 @@ rec {
   home.packages =
     with pkgs;
     [
+      xwayland-satellite
+      waybar
+      fuzzel
 
       # Programming language toolings
       gnuplot_qt
@@ -56,7 +64,6 @@ rec {
 
       # office
       libreoffice-qt6-fresh
-      drawio
 
       # networking tools
       wineWowPackages.stable
@@ -81,6 +88,11 @@ rec {
     "gs" = "git status";
     "gd" = "git diff";
     "list-generations" = "nix profile history --profile /nix/var/nix/profiles/system";
+  };
+
+  programs.waybar = {
+    enable = true;
+    systemd.enable = true;
   };
 
   programs.ssh = {

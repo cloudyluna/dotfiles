@@ -4,6 +4,7 @@ cp -f /etc/nixos/flake.nix ./nixos/
 cp -f /etc/nixos/flake.lock ./nixos
 cp -f /etc/nixos/home.nix ./nixos
 cp -f /etc/nixos/pub_credentials.nix ./nixos
+cp -f /etc/nixos/niri.nix ./nixos
 
 if [[ -z "$(command -v nixfmt)" ]]
 then
