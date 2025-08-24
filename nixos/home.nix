@@ -18,7 +18,7 @@ rec {
   home.packages =
     with pkgs;
     [
-      xwayland-satellite
+      xwayland-satellite-stable
       waybar
       fuzzel
 
@@ -92,7 +92,6 @@ rec {
 
   programs.waybar = {
     enable = true;
-    systemd.enable = true;
   };
 
   programs.ssh = {

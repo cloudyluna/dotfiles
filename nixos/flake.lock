@@ -59,6 +59,7 @@
       "original": {
         "owner": "sodiboo",
         "repo": "niri-flake",
+        "rev": "3266023d4bb7968fdbec2c598a22a50ae98f031b",
         "type": "github"
       }
     },

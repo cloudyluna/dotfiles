@@ -7,9 +7,36 @@
 }:
 {
   programs.niri = {
-    package = pkgs.niri;
+    package = pkgs.niri-stable;
     enable = true;
     settings = {
+      input.touchpad.natural-scroll = false;
+      window-rules = [
+        {
+          matches = [
+            { app-id = "Wezterm"; }
+          ];
+          open-fullscreen = true;
+        }
+
+        {
+          matches = [
+            { app-id = "Firefox"; }
+          ];
+          open-fullscreen = true;
+        }
+      ];
+      spawn-at-startup = [
+        { command = [ (lib.getExe pkgs.waybar) ]; }
+        { command = [ (lib.getExe pkgs.wezterm) ]; }
+        {
+          command = [
+            (lib.getExe pkgs.wezterm)
+            "-e"
+            (lib.getExe pkgs.emacs)
+          ];
+        }
+      ];
       binds = {
         # Keys consist of modifiers separated by + signs, followed by an XKB key name
         # in the end. To find an XKB name for a particular key, you may use a program
@@ -28,6 +55,17 @@
         # Suggested binds for running programs: terminal, app launcher, screen locker.
         "Mod+T".action.spawn = "wezterm";
         "Mod+D".action.spawn = "fuzzel";
+        "Mod+Alt+F".action.spawn = "firefox";
+        "Mod+Alt+E".action.spawn = [
+          "wezterm"
+          "-e"
+          "emacs"
+        ];
+        "Mod+Alt+B".action.spawn = [
+          "wezterm"
+          "-e"
+          "btop"
+        ];
         "Super+Alt+L".action.spawn = "swaylock";
 
         # You can also use a shell. Do this if you need pipes, multiple commands, etc.

@@ -6,7 +6,9 @@
     flake-utils.url = "github:numtide/flake-utils";
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    niri.url = "github:sodiboo/niri-flake";
+
+    # I don't want to this update often.
+    niri.url = "github:sodiboo/niri-flake/3266023d4bb7968fdbec2c598a22a50ae98f031b";
   };
 
   outputs =
@@ -34,6 +36,8 @@
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.backupFileExtension = "backup";
+
+                # This affects directory name. Do NOT change!
                 home-manager.users.${credentials.userName} =
                   { pkgs, ... }:
                   {
