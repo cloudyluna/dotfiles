@@ -7,70 +7,62 @@
 }:
 
 let
-  myKDEPackages = with pkgs.kdePackages; [
-    okular
-    kclock
-  ];
 in
 rec {
 
   # Packages that should be installed to the user profile.
-  home.packages =
-    with pkgs;
-    [
-      xwayland-satellite-stable
-      waybar
-      fuzzel
-      swaynotificationcenter
+  home.packages = with pkgs; [
+    xwayland-satellite-stable
+    waybar
+    fuzzel
+    swaynotificationcenter
 
-      # Programming language toolings
-      gnuplot_qt
+    # Programming language toolings
+    gnuplot_qt
 
-      ### NIX TOOLS
-      nixfmt-rfc-style # nix code formatter
+    ### NIX TOOLS
+    nixfmt-rfc-style # nix code formatter
 
-      # media
-      mpv
-      audacious
-      gimp3
-      yt-dlp
-      russ # rss/atom
-      syncplay
-      gitui
+    # media
+    mpv
+    audacious
+    gimp3
+    yt-dlp
+    russ # rss/atom
+    syncplay
+    gitui
 
-      # git compat
-      jujutsu
-      taskwarrior3
-      taskwarrior-tui
+    # git compat
+    jujutsu
+    taskwarrior3
+    taskwarrior-tui
 
-      # database
-      sqlite
+    # database
+    sqlite
 
-      # terminal
-      alacritty
+    # terminal
+    alacritty
 
-      # editors
-      vscode-fhs
+    # editors
+    vscode-fhs
 
-      # shells
-      fish
-      gh
+    # shells
+    fish
+    gh
 
-      # moneh
-      gnucash
+    # moneh
+    gnucash
 
-      # browsers (other than firefox)
-      tor-browser
-      epiphany
+    # browsers (other than firefox)
+    tor-browser
 
-      # office
-      libreoffice-qt6-fresh
+    # office
+    libreoffice-qt6-fresh
 
-      # networking tools
-      wineWowPackages.stable
-      winetricks
-    ]
-    ++ myKDEPackages;
+    # networking tools
+    wineWowPackages.stable
+    winetricks
+  ];
 
   home.username = credentials.userName;
   home.homeDirectory = "/home/${credentials.userName}";
@@ -82,6 +74,7 @@ rec {
 
   home.sessionVariables = {
     EDITOR = "emacs -Q --no-window-system --load $HOME/.quick-emacs.el";
+    GSK_RENDERER = "gl";
   };
 
   home.shellAliases = {

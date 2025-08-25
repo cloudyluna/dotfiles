@@ -18,10 +18,10 @@ fi
 
 cp -f "$HOME/.local/bin/giadd.sh" "$SCRIPTS_PATH"
 cp -f "$HOME/.local/bin/signed-giadd.sh" "$SCRIPTS_PATH"
-cp -f "$HOME/.emacs" "$SCRIPTS_PATH"
-cp -f "$HOME/.quick-emacs.el" "$SCRIPTS_PATH"
+cp -f "$HOME/.emacs" .
+cp -f "$HOME/.quick-emacs.el" .
 cp -f "$HOME/.summoner.toml" ./haskell
-cp -f "$HOME/.config/alacritty/alacritty.toml" "$SCRIPTS_PATH"
-cp -f "$HOME/.tmux.conf" "$SCRIPTS_PATH"
+cp -f "$HOME/.config/alacritty/alacritty.toml" .
+cp -f "$HOME/.tmux.conf" .
 
 exit
