@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-nix shell  \
+echo "Loads an ad hoc Haskell development environment"
+
+nix develop  \
     -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/d3f42bd62aa840084563e3b93e4eab73cb0a0448.tar.gz \
     nixpkgs/nixos-unstable#haskellPackages.cabal-install \
     nixpkgs/nixos-unstable#haskell.compiler.ghc910 \
