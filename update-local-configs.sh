@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
 
-cp -f /etc/nixos/flake.nix ./nixos/
-cp -f /etc/nixos/flake.lock ./nixos
-cp -f /etc/nixos/home.nix ./nixos
-cp -f /etc/nixos/pub_credentials.nix ./nixos
-cp -f /etc/nixos/niri.nix ./nixos
+SYSTEM_CONFIG_PATH="/etc/nixos"
+LOCAL_CONFIG_PATH="./nixos"
+HOME_MANAGER="home-manager"
+
+cp -f "$SYSTEM_CONFIG_PATH/"*.nix "$LOCAL_CONFIG_PATH/"
+cp -f "$SYSTEM_CONFIG_PATH/$HOME_MANAGER/"*.nix "$LOCAL_CONFIG_PATH/$HOME_MANAGER/"
 
 if [[ -z "$(command -v nixfmt)" ]]
 then
     exit
 else
-    nixfmt ./nixos/*.nix
+    nixfmt "$LOCAL_CONFIG_PATH/"*.nix
+    nixfmt "$LOCAL_CONFIG_PATH/$HOME_MANAGER/"*.nix
 fi
 
 cp -f "$HOME/.local/bin/giadd.sh" .

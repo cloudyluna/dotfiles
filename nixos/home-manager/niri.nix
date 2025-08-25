@@ -45,7 +45,8 @@
             (lib.getExe pkgs.emacs)
           ];
         }
-        { command = [
+        {
+          command = [
             "swaync"
           ];
         }
