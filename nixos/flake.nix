@@ -1,5 +1,7 @@
 {
-  description = "NixOS configuration";
+  description = ''
+    Main NixOS configuration
+  '';
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
@@ -7,103 +9,73 @@
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # I don't want to this update often.
+    # I don't want this to update often.
     niri.url = "github:sodiboo/niri-flake/3266023d4bb7968fdbec2c598a22a50ae98f031b";
   };
 
   outputs =
-    inputs@{
+    {
       nixpkgs,
       flake-utils,
       home-manager,
       niri,
       ...
-    }:
+    }@inputs:
     {
       nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
+        nixos = nixpkgs.lib.nixosSystem rec {
           system = "x86_64-linux";
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          };
           modules =
             let
-              credentials = import ./pub_credentials.nix;
+              publicCredentials = import ./public-credentials.nix;
+              myNetworking = import ./networking.nix {
+                credentials = publicCredentials;
+              };
+              myTimeZone = import ./timezone.nix;
+              myI18n = import ./i18n.nix;
+              myFonts = import ./fonts.nix;
+              mySound = import ./sound.nix;
+              myDesktopEnvironment = import ./desktop-environment.nix;
+              mySystemPackages = import ./system-packages.nix {
+                pkgs = pkgs;
+                inputs = inputs;
+              };
+              mySystemUsers = import ./system-users.nix {
+                pkgs = pkgs;
+                credentials = publicCredentials;
+              };
+              myHomeManager = import ./home-manager/init.nix {
+                credentials = publicCredentials;
+                home-manager = home-manager;
+                inputs = inputs;
+                config = pkgs.config;
+              };
 
             in
             [
               ./configuration.nix
-              home-manager.nixosModules.default
-              {
-                # HOME MANAGER
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.backupFileExtension = "backup";
+              myNetworking
+              myTimeZone
+              myI18n
+              myFonts
+              mySound
+              myDesktopEnvironment
+              mySystemPackages
+              mySystemUsers
 
-                # This affects directory name. Do NOT change!
-                home-manager.users.${credentials.userName} =
-                  { pkgs, ... }:
-                  {
-                    imports = [
-                      ./home.nix
-                      inputs.niri.homeModules.niri
-                      ./niri.nix
-                    ];
-                  };
-              }
+              home-manager.nixosModules.default
+              myHomeManager
 
               (
                 { pkgs, lib, ... }:
                 {
-                  ################################## Configs ########################################
-
-                  programs.niri.enable = true;
-
-                  programs.ssh.startAgent = true;
 
                   # Enable zRAM for better memory performance.
                   zramSwap.enable = true;
-                  programs.steam.enable = true;
-
-                  fonts.packages = with pkgs; [
-                    fira-code
-                    fira-math
-                    font-awesome
-                  ];
-
-                  programs.appimage = {
-                    enable = true;
-                    binfmt = true;
-                  };
-
-                  # Enable fish shell.
-                  programs.fish.enable = true;
-
-                  # Define a user account. Don't forget to set a password with ‘passwd’.
-                  users.users.${credentials.userName} = {
-                    shell = pkgs.fish;
-                    isNormalUser = true;
-                    description = credentials.description;
-                    extraGroups = [
-                      "networkmanager"
-                      "wheel"
-                    ];
-                    #packages = with pkgs; [];
-                  };
-
-                  networking.hostName = credentials.hostName;
-
-                  # Allow unfree packages
-                  nixpkgs.config.allowUnfree = true;
-
-                  # Install & enable firefox.
-                  programs.firefox.enable = true;
-
-                  # Install flatpak & enable flatpak.
-                  services.flatpak.enable = true;
-
-                  nixpkgs.overlays = [
-                    inputs.niri.overlays.niri
-                  ];
-
-                  ################################## Configs ########################################
 
                   # Keep flake sources that are present with unremoved generations.
                   # To remove, run nixos-clean.sh 1d
@@ -118,90 +90,8 @@
                     ) (builtins.attrNames inputs)
                   );
 
-                  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-                  environment.systemPackages = with pkgs; [
-                    # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-
-                    # programming language toolings
-                    # python3: do I need this? For some reason, having python in PATH in my previous OSes
-                    # will always slow things down.
-                    # ehh, just `nix shell nixpkgs#python3` if I ever need it.
-                    moreutils
-
-                    # editors
-                    emacs
-                    libvterm
-                    cmake
-                    libtool
-                    vim
-
-                    # Also check /etc/nixos/home.nix for more user env packages.
-
-                    # sysinfo
-                    neofetch
-                    pciutils
-                    usbutils
-                    sysstat
-                    btop
-
-                    # archives
-                    zip
-                    xz
-                    unzip
-                    p7zip
-                    rar
-                    unrar
-                    zstd
-
-                    # utils
-                    cron
-                    yazi # TUI file manager
-                    nix-prefetch
-                    nix-prefetch-git
-                    nix-prefetch-hg
-                    nix-prefetch-bzr
-                    nix-prefetch-github
-                    xsel
-                    valgrind
-                    gdb
-                    pinentry-qt
-                    pinentry-curses
-                    ripgrep # recursively searches directories for a regex pattern
-                    jq # A lightweight and flexible command-line JSON processor
-                    eza # A modern replacement for ‘ls’
-                    fzf # A command-line fuzzy finder
-                    shellcheck # Shell linter
-                    tree # List directory recursively as a tree view
-                    file # Show file info.
-                    glow # TUI markdown previewer
-                    tmux # TTY multiplexer
-                    transmission_4
-                    transmission_4-gtk
-                    xclip
-
-                    # networking tools
-                    nmap # A utility for network discovery and security auditing
-
-                    curl # fetch
-                    wget
-                    rsync
-
-                    # passwords security
-                    keepassxc
-                    gnupg
-
-                    # emergency browser
-                    lynx
-
-                    # devel
-                    openssl # do I need this at global level?
-                    pkg-config # do I need this at global level?
-                    git
-                    libgcc
-                    gnumake
-                    ccache
-                  ];
-
+                  # Enable CUPS to print documents.
+                  # services.printing.enable = true;
                 }
               )
             ];

@@ -1,4 +1,5 @@
 {
+  credentials,
   config,
   pkgs,
   inputs,
@@ -6,7 +7,6 @@
 }:
 
 let
-  credentials = import ./pub_credentials.nix;
   myKDEPackages = with pkgs.kdePackages; [
     okular
     kclock
@@ -21,6 +21,7 @@ rec {
       xwayland-satellite-stable
       waybar
       fuzzel
+      swaynotificationcenter
 
       # Programming language toolings
       gnuplot_qt
@@ -75,8 +76,8 @@ rec {
   home.homeDirectory = "/home/${credentials.userName}";
 
   home.sessionPath = [
-    "${home.homeDirectory}/.local/bin"
-    "${home.homeDirectory}/.cargo/bin"
+    "$HOME/.local/bin"
+    "$HOME/.cargo/bin"
   ];
 
   home.sessionVariables = {

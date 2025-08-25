@@ -10,30 +10,43 @@
     package = pkgs.niri-stable;
     enable = true;
     settings = {
+      environment = {
+        DISPLAY = ":0";
+      };
       input.touchpad.natural-scroll = false;
       window-rules = [
         {
           matches = [
             { app-id = "Wezterm"; }
           ];
-          open-fullscreen = true;
+          open-maximized = true;
         }
 
         {
           matches = [
             { app-id = "Firefox"; }
           ];
+          open-maximized = true;
+        }
+
+        {
+          matches = [
+            { app-id = "Emacs"; }
+          ];
           open-fullscreen = true;
         }
       ];
       spawn-at-startup = [
+        { command = [ (lib.getExe pkgs.xwayland-satellite-unstable) ]; }
         { command = [ (lib.getExe pkgs.waybar) ]; }
         { command = [ (lib.getExe pkgs.wezterm) ]; }
         {
           command = [
-            (lib.getExe pkgs.wezterm)
-            "-e"
             (lib.getExe pkgs.emacs)
+          ];
+        }
+        { command = [
+            "swaync"
           ];
         }
       ];
@@ -56,11 +69,7 @@
         "Mod+T".action.spawn = "wezterm";
         "Mod+D".action.spawn = "fuzzel";
         "Mod+Alt+F".action.spawn = "firefox";
-        "Mod+Alt+E".action.spawn = [
-          "wezterm"
-          "-e"
-          "emacs"
-        ];
+        "Mod+Alt+E".action.spawn = "emacs";
         "Mod+Alt+B".action.spawn = [
           "wezterm"
           "-e"
@@ -72,8 +81,6 @@
         # Note: the entire command goes as a single argument in the end.
         # Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }
 
-        # Example volume keys mappings for PipeWire & WirePlumber.
-        # The allow-when-locked=true property makes them work even when the session is locked.
         "XF86AudioRaiseVolume" = {
           allow-when-locked = true;
           action.spawn = [
