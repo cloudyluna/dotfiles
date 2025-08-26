@@ -25,25 +25,24 @@
         pano # clipboard
       ];
       myKDEPackages = with pkgs.kdePackages; [
-        okular
-        dolphin
+        konsole
       ];
     in
     [
-      # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-
-      # programming language toolings
-      # python3: do I need this? For some reason, having python in PATH in my previous OSes
-      # will always slow things down.
-      # ehh, just `nix shell nixpkgs#python3` if I ever need it.
       moreutils
 
       # editors
       emacs
+      vim # # !!! MUST HAVE FOR EMERGENCY !!!
+
+      # terminal
       libvterm
-      cmake
       libtool
-      vim
+      alacritty
+      wezterm
+      # for wezterm
+      luaformatter
+      lua
 
       # Also check /etc/nixos/home.nix for more user env packages.
 
@@ -64,6 +63,7 @@
       zstd
 
       # utils
+      nixfmt-rfc-style
       cron
       yazi # TUI file manager
       nix-prefetch
@@ -72,8 +72,6 @@
       nix-prefetch-bzr
       nix-prefetch-github
       xsel
-      valgrind
-      gdb
       pinentry-qt
       pinentry-curses
       ripgrep # recursively searches directories for a regex pattern
@@ -85,8 +83,6 @@
       file # Show file info.
       glow # TUI markdown previewer
       tmux # TTY multiplexer
-      transmission_4
-      transmission_4-gtk
       xclip
 
       # networking tools
@@ -95,6 +91,10 @@
       curl # fetch
       wget
       rsync
+      zsync
+
+      # office
+      libreoffice-qt6-fresh
 
       # passwords security
       keepassxc
@@ -104,12 +104,17 @@
       lynx
 
       # devel
-      openssl # do I need this at global level?
-      pkg-config # do I need this at global level?
+      openssl
+      pkg-config
       git
+      gdb
+      valgrind
       libgcc
       gnumake
+      cmake
       ccache
+      meson
+      ninja
     ]
     ++ myGnomeExtensions
     ++ myKDEPackages;

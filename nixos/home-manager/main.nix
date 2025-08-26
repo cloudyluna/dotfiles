@@ -20,9 +20,6 @@ rec {
     # Programming language toolings
     gnuplot_qt
 
-    ### NIX TOOLS
-    nixfmt-rfc-style # nix code formatter
-
     # media
     mpv
     audacious
@@ -40,9 +37,6 @@ rec {
     # database
     sqlite
 
-    # terminal
-    alacritty
-
     # editors
     vscode-fhs
 
@@ -56,10 +50,7 @@ rec {
     # browsers (other than firefox)
     tor-browser
 
-    # office
-    libreoffice-qt6-fresh
-
-    # networking tools
+    # WINE tools
     wineWowPackages.stable
     winetricks
   ];
