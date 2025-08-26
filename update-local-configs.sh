@@ -23,5 +23,6 @@ cp -f "$HOME/.quick-emacs.el" .
 cp -f "$HOME/.summoner.toml" ./haskell
 cp -f "$HOME/.config/alacritty/alacritty.toml" .
 cp -f "$HOME/.tmux.conf" .
+cp -f "$HOME/.wezterm.lua" .
 
 exit
