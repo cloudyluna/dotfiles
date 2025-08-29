@@ -65,6 +65,8 @@
   ("C-c C-c M-x" . 'execute-extended-command))
 (use-package yaml :ensure yaml)
 (use-package nix-mode :ensure nix-mode)
+(use-package lua-mode :ensure lua-mode)
+(use-package fennel-mode :ensure fennel-mode)
 (use-package sly :ensure sly)
 
 
