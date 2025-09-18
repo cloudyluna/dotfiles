@@ -19,6 +19,8 @@ config.window_background_image_hsb = {
     saturation = 1.0,
 }
 config.window_close_confirmation = 'AlwaysPrompt'
-config.show_close_tab_button_in_tabs = false
+--config.show_close_tab_button_in_tabs = false
+config.integrated_title_button_style = "Gnome"
+config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 
 return config

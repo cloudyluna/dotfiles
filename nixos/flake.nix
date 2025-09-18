@@ -43,10 +43,11 @@
               mySystemPackages = import ./system-packages.nix {
                 pkgs = pkgs;
                 inputs = inputs;
+                credentials = publicCredentials;
               };
               mySystemUsers = import ./system-users.nix {
-                pkgs = pkgs;
                 credentials = publicCredentials;
+                pkgs = pkgs;
               };
               myHomeManager = import ./home-manager/init.nix {
                 credentials = publicCredentials;

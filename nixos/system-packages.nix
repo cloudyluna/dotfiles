@@ -1,4 +1,9 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  credentials,
+  ...
+}:
 {
   nixpkgs.overlays = [
     inputs.niri.overlays.niri
@@ -14,8 +19,21 @@
     };
     niri.enable = true;
   };
-  services.flatpak.enable = true;
-  services.udev.packages = [ pkgs.gnome-settings-daemon ];
+
+  services = {
+    flatpak.enable = true;
+    udev.packages = [ pkgs.gnome-settings-daemon ];
+
+    readeck = {
+      enable = true;
+      environmentFile = "/home/${credentials.userName}/.config/readeck/environment-file";
+      settings = {
+        server = {
+          port = 9090;
+        };
+      };
+    };
+  };
 
   environment.systemPackages =
     with pkgs;
@@ -115,6 +133,9 @@
       ccache
       meson
       ninja
+
+      # gaming
+      lutris
     ]
     ++ myGnomeExtensions
     ++ myKDEPackages;

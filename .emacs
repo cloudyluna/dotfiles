@@ -42,7 +42,15 @@
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes '(tango-dark))
  '(inhibit-startup-screen t)
- '(package-selected-packages nil))
+ '(package-selected-packages
+   '(clang-format company dired-explorer dired-filter dired-sidebar
+                  direnv elgrep elpher fennel-mode flycheck
+                  flymake-shellcheck haskell-mode helm-swoop jsonrpc
+                  lsp-haskell lua-mode magit move-text multi-vterm
+                  neotree nickel-mode nix-mode nyan-mode
+                  projectile-codesearch projectile-ripgrep
+                  restart-emacs rustic sly smartparens smex vlf yaml
+                  yaml-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
