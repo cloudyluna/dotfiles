@@ -6,8 +6,6 @@ local home = os.getenv('HOME')
 config.enable_scroll_bar = true
 config.initial_cols = 120
 config.initial_rows = 28
-
-
 config.font = wezterm.font 'Fira Code'
 config.font_size = 12
 
@@ -19,8 +17,5 @@ config.window_background_image_hsb = {
     saturation = 1.0,
 }
 config.window_close_confirmation = 'AlwaysPrompt'
---config.show_close_tab_button_in_tabs = false
-config.integrated_title_button_style = "Gnome"
-config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 
 return config
