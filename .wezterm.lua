@@ -6,6 +6,8 @@ local home = os.getenv('HOME')
 config.enable_scroll_bar = true
 config.initial_cols = 120
 config.initial_rows = 28
+
+
 config.font = wezterm.font 'Fira Code'
 config.font_size = 12
 

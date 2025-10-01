@@ -28,8 +28,6 @@
     {
       imports = [
         myMain
-        inputs.niri.homeModules.niri
-        ./niri.nix
       ];
     };
 

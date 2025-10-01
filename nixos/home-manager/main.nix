@@ -12,11 +12,6 @@ rec {
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
-    xwayland-satellite-stable
-    waybar
-    fuzzel
-    swaynotificationcenter
-
     # Programming language toolings
     gnuplot_qt
 

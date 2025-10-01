@@ -8,9 +8,6 @@
     flake-utils.url = "github:numtide/flake-utils";
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    # I don't want this to update often.
-    niri.url = "github:sodiboo/niri-flake/3266023d4bb7968fdbec2c598a22a50ae98f031b";
   };
 
   outputs =
@@ -18,7 +15,6 @@
       nixpkgs,
       flake-utils,
       home-manager,
-      niri,
       ...
     }@inputs:
     {
