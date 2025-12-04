@@ -12,9 +12,9 @@ config.font = wezterm.font 'Fira Code'
 config.font_size = 12
 
 -- TODO: Bundle the wallpapers.
-config.window_background_image = home .. '/Pictures/wallpaper/The-Elder-Scrolls-V-Skyrim-PS4-Wallpapers-12.jpg'
+config.window_background_image = home .. '/Pictures/wallpaper/lofi-bedroom-digital-art-hd-wallpaper-uhdpaper.com-143@0@e.jpg'
 config.window_background_image_hsb = {
-    brightness = 0.02,
+    brightness = 0.08,
     hue = 0.7,
     saturation = 1.0,
 }
