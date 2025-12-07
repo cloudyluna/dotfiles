@@ -16,7 +16,6 @@
       enable = true;
       binfmt = true;
     };
-    niri.enable = true;
   };
 
   services = {
@@ -56,8 +55,6 @@
       libvterm
       libtool
       alacritty
-      wezterm
-      # for wezterm
       luaformatter
       lua
 

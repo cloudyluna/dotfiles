@@ -70,10 +70,6 @@ rec {
     "list-generations" = "nix profile history --profile /nix/var/nix/profiles/system";
   };
 
-  programs.waybar = {
-    enable = true;
-  };
-
   programs.ssh = {
     enable = true;
     addKeysToAgent = "yes";
