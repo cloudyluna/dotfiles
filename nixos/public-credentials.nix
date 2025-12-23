@@ -1,12 +1,12 @@
 # Public credentials.
 {
-  userName = "cloudyluna";
-  userEmail = "luna.cloudberry@proton.me";
-  description = "Luna";
-  hostName = "nixos";
-  gpgFingerprint = "321BB0914E1D85BC";
+  user = {
+    name = "momo";
+    email = "luna.cloudberry@gmail.com";
+    description = "Momo";
+  };
 
-  momoUserName = "momo";
-  momoUserEmail = "luna.cloudberry@gmail.com";
-  momoDescription = "Momo";
+  host = {
+    name = "nixos";
+  };
 }

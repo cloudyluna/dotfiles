@@ -13,14 +13,40 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./disko-config.nix
   ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices."luks-7fa6fc38-cb08-412c-88ba-a4c4a4a0d4f7".device =
-    "/dev/disk/by-uuid/7fa6fc38-cb08-412c-88ba-a4c4a4a0d4f7";
+  # boot.loader.grub.enable = true;
+  # boot.loader.grub.efiSupport = true;
+  # boot.loader.grub.efiInstallAsRemovable = true;
+
+  boot.kernelParams = [
+    "zswap.enabled=1"
+    "zswap.accept_threshold_percent=90"
+    "zswap.compressor=zstd" # compression algorithm
+    "zswap.max_pool_percent=50" # maximum percentage of RAM that zswap is allowed to use
+    "zswap.shrinker_enabled=1" # whether to shrink the pool proactively on high memory pressure
+    "zswap.zpool=zsmalloc"
+  ];
+
+  boot.plymouth =
+    let
+      chosenAdiTheme = "green_blocks";
+    in
+    {
+      enable = true;
+      theme = chosenAdiTheme;
+      themePackages = with pkgs; [
+        (adi1090x-plymouth-themes.override {
+          selected_themes = [ chosenAdiTheme ];
+        })
+        plymouth-blahaj-theme # blahaj
+      ];
+    };
 
   # Enable the Flakes feature and the accompanying new nix command-line tool
   nix.settings.experimental-features = [
@@ -34,6 +60,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.11"; # Did you read the comment?
 
 }

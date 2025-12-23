@@ -16,25 +16,31 @@
   };
 
   # Display manager
-  services.xserver.displayManager.gdm.enable = true;
+  services.displayManager.gdm.enable = true;
   services.displayManager.defaultSession = "gnome";
 
   # GNOME
-  services.xserver.desktopManager.gnome.enable = true;
+  services.desktopManager.gnome.enable = true;
   services.gnome.core-apps.enable = true;
+  services.gnome.gcr-ssh-agent.enable = false; # See https://github.com/NixOS/nixpkgs/issues/466769
+  # Instead, we explicitly start SSH agent. The authorization
+  # can be retained by doing ssh-add <SSH_KEY> in the CLI.
+  programs.ssh.startAgent = true;
   services.gnome.core-developer-tools.enable = false;
   services.gnome.games.enable = false;
   environment.gnome.excludePackages = with pkgs; [
     gnome-tour
     gnome-user-docs
+    gnome-music
+    gnome-maps
+    gnome-software
   ];
 
-  # Using the following example configuration, Qt applications
-  # will have a look similar to the adwaita style used by GNOME
-  # using a dark theme.
-  qt = {
-    enable = true;
-    platformTheme = "gnome";
-    style = "adwaita-dark";
-  };
+  environment.systemPackages = with pkgs.gnomeExtensions; [
+    appindicator
+    clipboard-indicator
+    removable-drive-menu
+    wallpaper-slideshow
+    lockscreen-extension
+  ];
 }

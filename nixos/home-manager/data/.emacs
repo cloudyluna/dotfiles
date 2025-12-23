@@ -24,7 +24,9 @@
   (add-hook 'text-mode #'display-fill-column-indicator-mode)
   (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
   (setopt display-fill-column-indicator-column t)
-  (setq default-directory (format "%s/workspace/" (getenv "HOME"))))
+  (let* ((*dir* (format "%s/workspace/" (getenv "HOME"))))
+    (make-directory *dir* t)
+    (setq default-directory *dir*)))
 
 (setup-basic-configurations)
 
@@ -65,15 +67,7 @@
  '(custom-enabled-themes '(tango-dark))
  '(elfeed-feeds +elfeed-feeds+)
  '(inhibit-startup-screen t)
- '(package-selected-packages
-   '(clang-format company dired-explorer dired-filter dired-sidebar
-                  direnv elfeed  elgrep elpher
-                  fennel-mode flycheck flymake-shellcheck haskell-mode
-                  helm-swoop jsonrpc lsp-haskell lua-mode magit
-                  move-text multi-vterm neotree nickel-mode nix-mode
-                  nyan-mode projectile-codesearch projectile-ripgrep
-                  restart-emacs rustic sly smartparens smex vlf yaml
-                  yaml-mode)))
+ '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -123,8 +117,6 @@
   (use-package projectile-ripgrep :ensure projectile-ripgrep)
   (use-package projectile-codesearch :ensure projectile-codesearch)
   :bind ("C-c p" . projectile-command-map))
-(use-package helm-swoop :ensure helm-swoop
-  :bind ("M-i" . helm-swoop))
 (use-package magit :ensure magit)
 (use-package smartparens
   :ensure smartparens

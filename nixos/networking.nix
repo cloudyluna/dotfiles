@@ -14,7 +14,7 @@ inputs@{ credentials, ... }:
   # Enable networking
   networking.networkmanager.enable = true;
 
-  networking.hostName = credentials.hostName;
+  networking.hostName = credentials.host.name;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -24,8 +24,6 @@ inputs@{ credentials, ... }:
   #   enableSSHSupport = true;
   # };
 
-  # Enable the OpenSSH daemon.
+  # Enable the OpenSSH server daemon.
   # services.openssh.enable = true;
-
-  programs.ssh.startAgent = true;
 }

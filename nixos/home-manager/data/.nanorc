@@ -1,0 +1,8 @@
+set tabsize 4
+set tabstospaces
+set linenumbers
+set softwrap
+## Enable ~/.nano_history for saving and reading search/replace strings.
+set historylog
+## Don't convert files from DOS/Mac format.
+set noconvert
