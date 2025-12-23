@@ -10,7 +10,15 @@
 
   programs = {
     firefox.enable = true;
-    fish.enable = true;
+    autojump.enable = true;
+    direnv.enable = true;
+    fish = {
+      enable = true;
+      interactiveShellInit = ''
+        # Don't do that shell init greetings ever again!
+        set fish_greeting
+      '';
+    };
     steam.enable = true;
     appimage = {
       enable = true;
@@ -21,16 +29,6 @@
   services = {
     flatpak.enable = true;
     udev.packages = [ pkgs.gnome-settings-daemon ];
-
-    readeck = {
-      enable = true;
-      environmentFile = "/home/${credentials.userName}/.config/readeck/environment-file";
-      settings = {
-        server = {
-          port = 9090;
-        };
-      };
-    };
   };
 
   environment.systemPackages =
@@ -46,6 +44,37 @@
     in
     [
       moreutils
+
+      # Programming language toolings
+      gnuplot_qt
+
+      # media
+      mpv
+      audacious
+      gimp3
+      yt-dlp
+      syncplay
+      gitui
+
+      # git compat
+      taskwarrior3
+      taskwarrior-tui
+
+      # database
+      sqlite
+
+      # editors
+      vscode-fhs
+
+      # shells
+      fish
+
+      # browsers (other than firefox)
+      tor-browser
+
+      # WINE tools
+      wineWowPackages.stable
+      winetricks
 
       # editors
       emacs

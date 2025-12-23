@@ -6,16 +6,12 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     flake-utils.url = "github:numtide/flake-utils";
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
   };
 
   outputs =
     {
       nixpkgs,
       flake-utils,
-      home-manager,
       ...
     }@inputs:
     {
@@ -46,13 +42,6 @@
                 credentials = publicCredentials;
                 pkgs = pkgs;
               };
-              myHomeManager = import ./home-manager/init.nix {
-                credentials = publicCredentials;
-                home-manager = home-manager;
-                inputs = inputs;
-                config = pkgs.config;
-              };
-
             in
             [
               ./configuration.nix
@@ -64,9 +53,6 @@
               myDesktopEnvironment
               mySystemPackages
               mySystemUsers
-
-              home-manager.nixosModules.default
-              myHomeManager
 
               (
                 { pkgs, lib, ... }:
