@@ -28,7 +28,7 @@
           SUBVOLUME = "/home";
           FSTYPE = "btrfs";
           ALLOW_USERS = [ credentials.user.name ];
-          TIMELINE_CREATE = true;
+          TIMELINE_CREATE = false;
           TIMELINE_CLEANUP = false;
           TIMELINE_LIMIT_DAILY = 0;
           TIMELINE_LIMIT_WEEKLY = 0;
