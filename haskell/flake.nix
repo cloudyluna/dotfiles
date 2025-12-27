@@ -16,8 +16,7 @@
         {
           devShells.default = with pkgs; pkgs.mkShell rec {
             nativeBuildInputs = [
-              haskell.compiler.ghc910
-              haskell.packages.ghc910.haskell-language-server
+              haskell.compiler.ghc914
               haskellPackages.cabal-install
               
               ghciwatch
