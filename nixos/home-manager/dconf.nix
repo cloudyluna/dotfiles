@@ -89,6 +89,7 @@ rec
           "audacious.desktop"
           "net.lutris.Lutris.desktop"
           "org.cataclysmdda.CataclysmDDA.desktop"
+          "org.gnome.Settings.desktop"
         ];
 
         # See ../desktop-environment.nix for extension packages.

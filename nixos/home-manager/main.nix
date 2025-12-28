@@ -23,6 +23,12 @@ rec {
       publicShare = null;
       templates = null;
     };
+    autostart = {
+      enable = true;
+      entries = [
+        "${pkgs.audacious}/share/applications/audacious.desktop"
+      ];
+    };
     desktopEntries = {
       # Alacritty top level name should be PascalCase
       # to override existing desktop file.
@@ -75,6 +81,10 @@ rec {
 
     ".quick-emacs.el" = {
       source = ./data/.quick-emacs.el;
+    };
+
+    ".rss-bookmarks.json" = {
+      source = ./data/.rss-bookmarks.json;
     };
 
     "Pictures/wallpapers" = {
@@ -287,6 +297,21 @@ rec {
                   {
                     pane = {
                       command = "yazi";
+                    };
+                  }
+                ];
+              };
+            }
+            {
+              tab = {
+                _props = {
+                  name = "News";
+                };
+                _children = [
+                  {
+                    pane = {
+                      # Install manually first with cargo install feedr.
+                      command = "feedr";
                     };
                   }
                 ];
