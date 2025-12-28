@@ -49,7 +49,8 @@
     graphviz
 
     # media
-    eog
+    imagemagick
+    ffmpeg_7
     mpv
     audacious
     gimp3
@@ -73,22 +74,16 @@
     # browsers (other than firefox)
     tor-browser
 
-    # WINE tools
-    wineWowPackages.stable
-    winetricks
-
     # editors
     emacs
     vim # # !!! MUST HAVE FOR EMERGENCY !!!
 
     # terminal
-    libvterm
-    libtool
+    libvterm # for emacs.
+    libtool # for emacs.
     alacritty
     luaformatter
     lua
-
-    # Also check /etc/nixos/home.nix for more user env packages.
 
     # sysinfo
     neofetch
@@ -166,6 +161,7 @@
 
     # gaming
     lutris
+    winetricks
     cataclysm-dda
   ];
 }

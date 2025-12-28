@@ -1,5 +1,5 @@
-Everything here goes into `/etc/nixos` and run `nixos-rebuild switch` to load
-the configs.
+Everything here goes into `/etc/nixos` and run `sudo nixos-rebuild --flake /etc/nixos` to rebuild
+the configurations.
 
 We are using Nix Flakes here, so remember to put `nix.settings.experimental-features = [ "nix-command" "flakes" ];` in your `/etc/nixos/configuration.nix` file.
 
@@ -17,6 +17,6 @@ We are using Nix Flakes here, so remember to put `nix.settings.experimental-feat
 
 or
 
-run `./scripts/execute-fresh-install.sh`
+run `./scripts/execute-fresh-install.sh` from the root of this repository.
 
 
