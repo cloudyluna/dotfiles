@@ -19,15 +19,16 @@ rec
       };
 
       "org/gnome/desktop/wm/preferences" = {
-        num-workspaces = 4;
+        num-workspaces = 6;
       };
 
       "org/gnome/desktop/session" = {
+        # Dim screen.
         idle-delay = lib.hm.gvariant.mkUint32 (minutesToSeconds 15);
       };
 
       "org/gnome/settings-daemon/plugins/power" = {
-        sleep-inactive-ac-timeout = minutesToSeconds 60;
+        sleep-inactive-ac-timeout = minutesToSeconds 80;
         sleep-inactive-ac-type = "suspend";
         sleep-inactive-battery-timeout = minutesToSeconds 30;
         sleep-inactive-battery-type = "suspend";
