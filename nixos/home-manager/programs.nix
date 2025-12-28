@@ -13,7 +13,6 @@ rec {
   imports = [
     ./programs/zellij.nix
     ./programs/alacritty.nix
-    ./programs/zed-editor.nix
     ./programs/emacs.nix
   ];
 

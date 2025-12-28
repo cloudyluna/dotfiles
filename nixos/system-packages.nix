@@ -67,6 +67,8 @@
     # editors
     vscode-fhs
     zed-editor-fhs
+    nixd
+    nil
 
     # shells
     fish
