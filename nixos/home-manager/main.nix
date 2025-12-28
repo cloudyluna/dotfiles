@@ -27,10 +27,6 @@ rec {
     # FIXME: Cannot set files with specific permissions.
     # See https://github.com/nix-community/home-manager/issues/3090
 
-    ".emacs" = {
-      source = ./data/.emacs;
-    };
-
     ".nanorc" = {
       source = ./data/.nanorc;
     };

@@ -77,23 +77,19 @@
 
 ;; my preferred elisp libraries
 
-(use-package dash :ensure dash
+(use-package dash
   :config (global-dash-fontify-mode))
 
-;; 
-
 (use-package smex
-  :ensure smex
   :bind
   ("M-x" . 'smex)
   ("M-X" . 'smex-major-mode-commands)
   ("C-c C-c M-x" . 'execute-extended-command))
-(use-package yaml :ensure yaml)
-(use-package nix-mode :ensure nix-mode)
-(use-package lua-mode :ensure lua-mode)
-(use-package fennel-mode :ensure fennel-mode)
-(use-package sly :ensure sly)
-(use-package elfeed :ensure elfeed)
+(use-package yaml)
+(use-package nix-mode)
+(use-package lua-mode)
+(use-package sly)
+(use-package elfeed)
 
 
 (defun augment-vterm (x)
@@ -101,64 +97,59 @@
   (setq display-line-numbers nil))
 
 ;; requires libvterm, cmake and libtool
-(use-package vterm :ensure vterm
+(use-package vterm
   :config
   (define-key vterm-mode-map (kbd "C-q") #'vterm-send-next-key)
   (advice-add
    'vterm
    :filter-return
    #'augment-vterm))
-(use-package multi-vterm :ensure multi-vterm
+
+(use-package multi-vterm
   :config (advice-add 'multi-vterm :filter-return #'augment-vterm))
-(use-package neotree :ensure neotree)
+
+(use-package neotree)
 (use-package projectile
-  :ensure projectile
   :config
-  (use-package projectile-ripgrep :ensure projectile-ripgrep)
-  (use-package projectile-codesearch :ensure projectile-codesearch)
+  (use-package projectile-ripgrep)
+  (use-package projectile-codesearch)
   :bind ("C-c p" . projectile-command-map))
-(use-package magit :ensure magit)
+(use-package magit)
 (use-package smartparens
-  :ensure smartparens
   :config
   (require 'smartparens-config)
   (smartparens-global-mode))
 (use-package nyan-mode
-  :ensure nyan-mode
   :config
   (nyan-mode))
 (use-package vlf
-  :ensure vlf
   :config
   (require 'vlf-setup))
 (use-package direnv
-  :ensure direnv
   :config
   (direnv-mode))
 (use-package company
-  :ensure company
   :config (add-hook 'after-init-hook 'global-company-mode))
-(use-package move-text :ensure move-text
+(use-package move-text
   :defer t
   :config (move-text-default-bindings))
-(use-package restart-emacs :ensure restart-emacs)
-(use-package elpher :ensure elpher :defer t)
+(use-package restart-emacs)
+(use-package elpher)
 
 ;; LSP/EGLOT/Programming env
-(use-package rustic :ensure rustic
+(use-package rustic
   :config
   (add-hook 'before-save-hook #'rustic-format-file)
   (add-to-list 'direnv-non-file-modes 'rustic-mode))
-(use-package haskell-mode :ensure haskell-mode)
-(use-package lsp-haskell :ensure lsp-haskell)
+(use-package haskell-mode)
+(use-package lsp-haskell)
 (use-package flymake-shellcheck
-  :ensure flymake-shellcheck
   :init (add-hook 'sh-mode-hook 'flymake-shellcheck-load)
-  :config (use-package flymake :ensure flymake))
+  :config (use-package flymake))
 (use-package clang-format
-  :ensure clang-format
   :config
   (setq clang-format-style "file")
   (setq clang-format-fallback-style "Microsoft")
   (add-hook 'c++-mode-hook #'clang-format-on-save-mode)
   (add-hook 'c-mode-hook #'clang-format-on-save-mode))
+(use-package surround)
