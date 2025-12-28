@@ -16,11 +16,13 @@
     { lib, pkgs, ... }:
     let
       myMain = import ./main.nix {
-        lib = lib;
-        pkgs = pkgs;
-        inputs = inputs;
-        credentials = credentials;
-        config = config;
+        inherit
+          inputs
+          pkgs
+          lib
+          credentials
+          config
+          ;
       };
     in
     {

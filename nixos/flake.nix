@@ -30,9 +30,9 @@
           };
           modules =
             let
-              publicCredentials = import ./public-credentials.nix;
+              credentials = import ./public-credentials.nix;
               myNetworking = import ./networking.nix {
-                credentials = publicCredentials;
+                inherit credentials;
               };
               myTimeZone = import ./timezone.nix;
               myI18n = import ./i18n.nix;
@@ -40,20 +40,19 @@
               mySound = import ./sound.nix;
               myDesktopEnvironment = import ./desktop-environment.nix;
               mySystemPackages = import ./system-packages.nix {
-                pkgs = pkgs;
-                inputs = inputs;
-                credentials = publicCredentials;
+                inherit pkgs inputs credentials;
               };
               mySystemUsers = import ./system-users.nix {
-                credentials = publicCredentials;
-                pkgs = pkgs;
+                inherit pkgs credentials;
               };
               myHomeManager = import ./home-manager/init.nix {
+                inherit
+                  inputs
+                  pkgs
+                  credentials
+                  home-manager
+                  ;
                 lib = pkgs.lib;
-                pkgs = pkgs;
-                credentials = publicCredentials;
-                home-manager = home-manager;
-                inputs = inputs;
                 config = pkgs.config;
               };
             in
@@ -80,9 +79,6 @@
                   environment.extraInit = ''
                     export XDG_DATA_DIRS="$XDG_DATA_DIRS:${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
                   '';
-
-                  # Enable CUPS to print documents.
-                  # services.printing.enable = true;
                 }
               )
             ];
