@@ -23,6 +23,39 @@ rec {
       publicShare = null;
       templates = null;
     };
+    desktopEntries = {
+      # Alacritty top level name should be PascalCase
+      # to override existing desktop file.
+      Alacritty =
+        let
+          zellijExec = "alacritty -e zellij --layout ${home.homeDirectory}/.config/zellij/layouts/dev.kdl";
+        in
+        {
+          name = "Alacritty";
+          type = "Application";
+          genericName = "Terminal";
+          exec = zellijExec;
+          terminal = false;
+          startupNotify = true;
+          categories = [
+            "System"
+            "TerminalEmulator"
+          ];
+          icon = "Alacritty";
+          comment = "A fast, cross-platform, OpenGL terminal emulator";
+
+          actions = {
+            "new-terminal" = {
+              name = "New Terminal Without Zellij";
+              exec = "alacritty";
+            };
+            "new-terminal-zellij" = {
+              name = "New Terminal With Zellij";
+              exec = zellijExec;
+            };
+          };
+        };
+    };
   };
   home.preferXdgDirectories = true;
   home.username = credentials.user.name;
@@ -122,12 +155,177 @@ rec {
   };
 
   programs.direnv.enable = true;
-
-  programs.tmux = {
+  programs.autojump.enable = true;
+  programs.yazi.enable = true;
+  programs.lazygit = {
     enable = true;
-    clock24 = true;
-    historyLimit = 5000;
-    mouse = true;
+    settings = {
+      git = {
+        autoFetch = false;
+        autoRefresh = false;
+      };
+    };
+  };
+
+  programs.zellij = {
+    enable = true;
+    attachExistingSession = true;
+    exitShellOnExit = true;
+    enableBashIntegration = true;
+    enableFishIntegration = true;
+    extraConfig = ''
+      keybinds {
+          unbind "Ctrl g"
+          locked {
+                  bind "Super g" {
+                          SwitchToMode "normal"
+                  }
+          }
+          normal {
+                  bind "Super g" {
+                          SwitchToMode "locked"
+                  }
+          }
+      }
+    '';
+
+    layouts = {
+      dev = {
+        layout = {
+          _children = [
+            {
+              default_tab_template = {
+                _children = [
+                  {
+                    pane = {
+                      size = 1;
+                      borderless = true;
+                      plugin = {
+                        location = "zellij:tab-bar";
+                      };
+                    };
+                  }
+                  { "children" = { }; }
+                  {
+                    pane = {
+                      size = 2;
+                      borderless = true;
+                      plugin = {
+                        location = "zellij:status-bar";
+                      };
+                    };
+                  }
+                ];
+              };
+            }
+            {
+              tab = {
+                _props = {
+                  name = "Main";
+                  focus = true;
+                };
+                _children = [
+                  {
+                    pane = {
+                      split_direction = "horizontal";
+                    };
+                  }
+
+                  {
+                    pane = {
+                      command = "emacs";
+                      args = [
+                        "-nw"
+                      ];
+                    };
+                  }
+                ];
+              };
+            }
+            {
+              tab = {
+                _props = {
+                  name = "fzf: $HOME";
+                };
+                _children = [
+                  {
+                    pane = {
+                      command = "fzf";
+                    };
+                  }
+                ];
+              };
+            }
+            {
+              tab = {
+                _props = {
+                  name = "Docs: NixOS";
+                };
+                _children = [
+                  {
+                    pane = {
+                      split_direction = "horizontal";
+                      command = "man";
+                      args = "home-configuration.nix";
+                    };
+                  }
+                  {
+                    pane = {
+                      command = "man";
+                      args = "configuration.nix";
+                    };
+                  }
+                ];
+              };
+            }
+            {
+              tab = {
+                _props = {
+                  name = "Files";
+                };
+                _children = [
+                  {
+                    pane = {
+                      command = "yazi";
+                    };
+                  }
+                ];
+              };
+            }
+            {
+              tab = {
+                _props = {
+                  name = "Shell";
+                };
+                _children = [
+                  {
+                    pane = {
+                      command = "fish";
+                    };
+                  }
+                ];
+              };
+            }
+          ];
+        };
+      };
+    };
+  };
+
+  programs.zed-editor = {
+    enable = true;
+    extensions = [
+      "nix"
+    ];
+    extraPackages = with pkgs; [
+      nixd
+    ];
+    userSettings = {
+      enable_ai = false;
+      telemetry = {
+        metrics = false;
+      };
+    };
   };
 
   programs.alacritty = {

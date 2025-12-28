@@ -55,7 +55,6 @@
     gimp3
     yt-dlp
     syncplay
-    gitui
 
     # git compat
     taskwarrior3
@@ -127,6 +126,7 @@
     tmux # TTY multiplexer
     xclip
     delta
+    yazi
 
     # networking tools
     nmap # A utility for network discovery and security auditing
