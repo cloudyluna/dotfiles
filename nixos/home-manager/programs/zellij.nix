@@ -6,7 +6,7 @@ rec {
 
   programs.zellij = {
     enable = true;
-    attachExistingSession = true;
+    attachExistingSession = false;
     exitShellOnExit = true;
     enableBashIntegration = true;
     enableFishIntegration = true;
