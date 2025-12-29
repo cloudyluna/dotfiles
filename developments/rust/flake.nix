@@ -35,7 +35,7 @@
               clang
               lldb
 
-              (rust-bin.stable."1.87.0".default.override {
+              (rust-bin.stable.latest.default.override {
                 extensions = [ "rust-docs" ];
                 targets = [
                   "i686-unknown-linux-gnu"
