@@ -82,20 +82,6 @@ rec {
             {
               tab = {
                 _props = {
-                  name = "fzf: $HOME";
-                };
-                _children = [
-                  {
-                    pane = {
-                      command = "fzf";
-                    };
-                  }
-                ];
-              };
-            }
-            {
-              tab = {
-                _props = {
                   name = "Docs: NixOS";
                 };
                 _children = [
