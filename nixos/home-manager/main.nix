@@ -55,8 +55,11 @@ rec {
   home.shellAliases = {
     "gc" = "git clone";
     "gs" = "git status";
-    "gd" = "git diff";
-    "list-generations" = "nix profile history --profile /nix/var/nix/profiles/system";
+    "ga" = "git add";
+    "gdh" = "git diff HEAD";
+    "gds" = "git diff --staged";
+    "nixos-list-generations" = "nh os info";
+    "nixos-cleanup" = "nh clean all --ask --keep 2";
   };
 
   # FIXME: Cannot find credentials var in a standalone git.nix module.
