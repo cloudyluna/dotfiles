@@ -8,8 +8,7 @@ let
   minutesToSeconds = minutes: minutes * 60;
   wallpapersPath = "${home.homeDirectory}/Pictures/wallpapers";
 in
-rec
-{
+rec {
   # Try to only add settings that you won't change
   # for a long time or ever again.
   dconf = {
@@ -86,6 +85,7 @@ rec
           "emacs.desktop"
           "org.keepassxc.KeePassXC.desktop"
           "thunderbird.desktop"
+          "org.telegram.desktop.desktop"
           "audacious.desktop"
           "net.lutris.Lutris.desktop"
           "org.cataclysmdda.CataclysmDDA.desktop"

@@ -19,6 +19,7 @@ rec {
       enable = true;
       entries = [
         "${pkgs.audacious}/share/applications/audacious.desktop"
+        "${pkgs.telegram-desktop}/share/applications/org.telegram.desktop.desktop"
       ];
     };
     desktopEntries = {

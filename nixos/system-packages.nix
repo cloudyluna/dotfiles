@@ -56,6 +56,7 @@
     gimp3
     yt-dlp
     syncplay
+    telegram-desktop
 
     # git compat
     taskwarrior3
