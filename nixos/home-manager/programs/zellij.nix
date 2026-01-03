@@ -11,6 +11,7 @@ rec {
     enableBashIntegration = true;
     enableFishIntegration = true;
     extraConfig = ''
+      show_startup_tips false
       keybinds {
           unbind "Ctrl g"
           locked {
