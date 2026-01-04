@@ -27,7 +27,9 @@
   (setopt display-fill-column-indicator-column t)
   (let* ((*dir* (format "%s/workspace/" (getenv "HOME"))))
     (make-directory *dir* t)
-    (setq default-directory *dir*)))
+    (setq default-directory *dir*))
+
+  (load-theme 'modus-vivendi)) ;; comes by default with emacs >=28.
 
 (setup-basic-configurations)
 
@@ -65,7 +67,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(tango-dark))
+ '(custom-enabled-themes '(modus-vivendi))
+ '(custom-safe-themes '("6dcf1ca4c7432773084b9d52649ee5eb2c663131c4c06859f648dea98d9acb3e"
+                        default))
  '(elfeed-feeds +elfeed-feeds+)
  '(inhibit-startup-screen t)
  '(package-selected-packages nil))
@@ -81,17 +85,38 @@
 (use-package dash
   :config (global-dash-fontify-mode))
 
-(use-package smex
-  :bind
-  ("M-x" . 'smex)
-  ("M-X" . 'smex-major-mode-commands)
-  ("C-c C-c M-x" . 'execute-extended-command))
-(use-package yaml)
-(use-package nix-mode)
-(use-package lua-mode)
-(use-package sly)
-(use-package elfeed)
+(use-package diminish)
 
+(use-package ivy)
+
+(use-package counsel)
+
+(use-package swiper
+  :diminish ivy-mode
+  :bind (("C-s" . swiper)
+         ("C-c C-r" . ivy-resume)
+         ("M-x" . counsel-M-x)
+         ("C-x C-f" . counsel-find-file)
+         ("C-M-i" . complete-symbol)
+         ("C-." . counsel-imenu)
+         ("C-c 8" . counsel-unicode-char)
+         ("C-c v" . ivy-push-view)
+         ("C-c V" . ivy-pop-view)
+         ("M-y" . counsel-yank-pop))
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-count-format "%d/%d "))
+
+(use-package yaml)
+
+(use-package nix-mode)
+
+(use-package lua-mode)
+
+(use-package sly)
+
+(use-package elfeed)
 
 (defun augment-vterm (x)
   (message "%s" "Warning: this command has been \"advised\" in $HOME/.emacs")
@@ -110,31 +135,41 @@
   :config (advice-add 'multi-vterm :filter-return #'augment-vterm))
 
 (use-package neotree)
+
 (use-package projectile
   :config
   (use-package projectile-ripgrep)
   (use-package projectile-codesearch)
   :bind ("C-c p" . projectile-command-map))
+
 (use-package magit)
+
 (use-package smartparens
   :config
   (require 'smartparens-config)
-  (smartparens-global-mode))
+  (smartparens-global-strict-mode))
+
 (use-package nyan-mode
   :config
   (nyan-mode))
+
 (use-package vlf
   :config
   (require 'vlf-setup))
+
 (use-package direnv
   :config
   (direnv-mode))
+
 (use-package company
   :config (add-hook 'after-init-hook 'global-company-mode))
+
 (use-package move-text
   :defer t
   :config (move-text-default-bindings))
+
 (use-package restart-emacs)
+
 (use-package elpher)
 
 ;; LSP/EGLOT/Programming env
@@ -173,7 +208,6 @@
   (lsp-ui-sideline-show-hover nil)
   (lsp-ui-doc-enable t))
 
-
 (use-package rustic
   :bind (:map rustic-mode-map
               ("M-j" . lsp-ui-imenu)
@@ -192,18 +226,20 @@
 
   ;; comment to disable rustfmt on save
   (setq rustic-format-on-save t)
-  (add-to-list 'direnv-non-file-modes 'rustic-mode)
-  )
+  (add-to-list 'direnv-non-file-modes 'rustic-mode))
 
 (use-package haskell-mode)
+
 (use-package lsp-haskell)
+
 (use-package flymake-shellcheck
   :init (add-hook 'sh-mode-hook 'flymake-shellcheck-load)
   :config (use-package flymake))
+
 (use-package clang-format
   :config
   (setq clang-format-style "file")
   (setq clang-format-fallback-style "Microsoft")
   (add-hook 'c++-mode-hook #'clang-format-on-save-mode)
   (add-hook 'c-mode-hook #'clang-format-on-save-mode))
-(use-package surround)
+

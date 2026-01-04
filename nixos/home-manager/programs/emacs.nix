@@ -14,7 +14,10 @@ in
       epkgs:
       (map (pkg: epkgs.${pkg})) [
         "dash"
-        "smex"
+        "diminish"
+        "ivy"
+        "counsel"
+        "swiper"
         "yaml"
         "nix-mode"
         "yaml-mode"
@@ -44,7 +47,6 @@ in
         "flymake"
         "flymake-shellcheck"
         "clang-format"
-        "surround"
       ];
     extraConfig = lib.readFile ./emacs/emacs.el;
   };
