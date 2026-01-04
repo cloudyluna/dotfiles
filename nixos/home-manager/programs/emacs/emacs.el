@@ -29,7 +29,7 @@
     (make-directory *dir* t)
     (setq default-directory *dir*))
 
-  (load-theme 'modus-vivendi)) ;; comes by default with emacs >=28.
+  (load-theme 'modus-vivendi t)) ;; comes by default with emacs >=28.
 
 (setup-basic-configurations)
 
@@ -67,9 +67,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(modus-vivendi))
- '(custom-safe-themes '("6dcf1ca4c7432773084b9d52649ee5eb2c663131c4c06859f648dea98d9acb3e"
-                        default))
  '(elfeed-feeds +elfeed-feeds+)
  '(inhibit-startup-screen t)
  '(package-selected-packages nil))
