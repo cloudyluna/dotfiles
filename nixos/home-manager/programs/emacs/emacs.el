@@ -33,29 +33,6 @@
 
 (setup-basic-configurations)
 
-(defconst +elfeed-feeds+
-  '(("https://feeds.arstechnica.com/arstechnica/index" general arstechnica tech)
-    ("https://news.ycombinator.com/rss" general ycombinator)
-    ("https://discourse.nixos.org/c/announcements/8.rss" tech nix nixos programming)
-    ("https://discourse.haskell.org/latest.rss" tech haskell programming)
-    ("https://www.phoronix.com/rss.php" general phoronix tech)
-    ("https://www.theregister.com/software/applications/headlines.atom" tech theregister applications)
-    ("https://www.theregister.com/software/devops/headlines.atom" tech theregister devop)
-    ("https://www.theregister.com/software/oses/headlines.atom" tech theregister os)
-    ("https://www.theregister.com/on_prem/systems/headlines.atom" tech theregister system)
-    ("https://www.theregister.com/on_prem/storage/headlines.atom" tech theregister storage)
-    ("https://www.theguardian.com/international/rss" general theguardian)
-    ("https://reddit.com/r/rust/top/.rss?t=week" tech reddit rust programming)
-    ("https://reddit.com/r/haskell/top/.rss?t=week" tech reddit haskell programming)
-    ("https://reddit.com/r/linux/top/.rss?t=week" tech reddit linux os)
-    ("https://reddit.com/r/nixos/top/.rss?t=week" tech reddit nix nixos programming)
-    ("https://hnrss.org/newest?q=linux" tech hackernews linux os)
-    ("https://hnrss.org/newest?q=rust" tech hackernews rust programming)
-    ("https://hnrss.org/newest?q=haskell" tech hackernews haskell programming)
-    ("http://rss.sciam.com/ScientificAmerican-News" science scientificamerican reliable)
-    ))
-
-
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
@@ -67,7 +44,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(elfeed-feeds +elfeed-feeds+)
  '(inhibit-startup-screen t)
  '(package-selected-packages nil))
 (custom-set-faces
@@ -113,10 +89,7 @@
 
 (use-package sly)
 
-(use-package elfeed)
-
 (defun augment-vterm (x)
-  (message "%s" "Warning: this command has been \"advised\" in $HOME/.emacs")
   (setq display-line-numbers nil))
 
 ;; requires libvterm, cmake and libtool

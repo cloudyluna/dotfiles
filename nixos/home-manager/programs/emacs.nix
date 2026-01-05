@@ -23,7 +23,6 @@ in
         "yaml-mode"
         "lua-mode"
         "sly"
-        "elfeed"
         "vterm"
         "multi-vterm"
         "neotree"
