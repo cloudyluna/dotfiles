@@ -112,7 +112,8 @@
     zstd
 
     # utils
-    asciinema
+    asciinema_3
+    asciinema-agg
     nixfmt-rfc-style
     cron
     nix-prefetch
