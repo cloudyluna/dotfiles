@@ -65,16 +65,15 @@ rec {
                 _children = [
                   {
                     pane = {
-                      split_direction = "horizontal";
-                    };
-                  }
-
-                  {
-                    pane = {
                       command = "emacs";
                       args = [
                         "-nw"
                       ];
+                    };
+                  }
+                  {
+                    pane = {
+                      split_direction = "horizontal";
                     };
                   }
                 ];
