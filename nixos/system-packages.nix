@@ -97,7 +97,7 @@
     lua
 
     # sysinfo
-    neofetch
+    hyfetch
     pciutils
     usbutils
     sysstat
@@ -112,6 +112,7 @@
     zstd
 
     # utils
+    asciinema
     nixfmt-rfc-style
     cron
     nix-prefetch
