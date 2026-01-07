@@ -31,10 +31,6 @@ rec {
       source = ./data/.nanorc;
     };
 
-    ".quick-emacs.el" = {
-      source = ./data/.quick-emacs.el;
-    };
-
     ".rss-bookmarks.json" = {
       source = ./data/.rss-bookmarks.json;
     };
@@ -49,7 +45,7 @@ rec {
     "$HOME/.cargo/bin"
   ];
   home.sessionVariables = {
-    EDITOR = "emacs -Q --no-window-system --load $HOME/.quick-emacs.el";
+    EDITOR = "emacs --no-window-system";
     GSK_RENDERER = "gl";
   };
   home.shellAliases = {
