@@ -65,6 +65,8 @@
     yt-dlp
     syncplay
     telegram-desktop
+    kiwix
+    kiwix-tools
 
     # git compat
     taskwarrior3
