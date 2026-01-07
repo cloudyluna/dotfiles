@@ -81,13 +81,13 @@
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "%d/%d "))
 
-(use-package yaml)
+(use-package yaml :defer t)
 
-(use-package nix-mode)
+(use-package nix-mode :defer t)
 
-(use-package lua-mode)
+(use-package lua-mode :defer t)
 
-(use-package sly)
+(use-package sly :defer t)
 
 (defun augment-vterm (x)
   (setq display-line-numbers nil))
@@ -104,15 +104,22 @@
 (use-package multi-vterm
   :config (advice-add 'multi-vterm :filter-return #'augment-vterm))
 
-(use-package neotree)
+(use-package treemacs
+  :defer t
+  :bind (:map global-map ("C-x t t" . treemacs)))
+
+(use-package projectile-ripgrep :after (projectile))
+
+(use-package treemacs-projectile :after (treemacs projectile))
+
+(use-package treemacs-magit :after (treemacs magit))
 
 (use-package projectile
-  :config
-  (use-package projectile-ripgrep)
-  (use-package projectile-codesearch)
+  :defer t
   :bind ("C-c p" . projectile-command-map))
 
-(use-package magit)
+
+(use-package magit :defer t)
 
 (use-package smartparens
   :config
@@ -139,8 +146,6 @@
   :config (move-text-default-bindings))
 
 (use-package restart-emacs)
-
-(use-package elpher)
 
 ;; LSP/EGLOT/Programming env
 (use-package lsp-mode
@@ -200,16 +205,11 @@
 
 (use-package haskell-mode)
 
-(use-package lsp-haskell)
+(use-package lsp-haskell :after (lsp-mode))
+
+(use-package flymake :defer t)
 
 (use-package flymake-shellcheck
-  :init (add-hook 'sh-mode-hook 'flymake-shellcheck-load)
-  :config (use-package flymake))
-
-(use-package clang-format
-  :config
-  (setq clang-format-style "file")
-  (setq clang-format-fallback-style "Microsoft")
-  (add-hook 'c++-mode-hook #'clang-format-on-save-mode)
-  (add-hook 'c-mode-hook #'clang-format-on-save-mode))
+  :after (flymake)
+  :init (add-hook 'sh-mode-hook 'flymake-shellcheck-load))
 

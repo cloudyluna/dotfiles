@@ -25,10 +25,11 @@ in
         "sly"
         "vterm"
         "multi-vterm"
-        "neotree"
+        "treemacs"
         "projectile"
         "projectile-ripgrep"
-        "projectile-codesearch"
+        "treemacs-projectile"
+        "treemacs-magit"
         "magit"
         "smartparens"
         "nyan-mode"
@@ -37,7 +38,6 @@ in
         "company"
         "move-text"
         "restart-emacs"
-        "elpher"
         "rustic"
         "haskell-mode"
         "lsp-mode"
@@ -45,7 +45,6 @@ in
         "lsp-haskell"
         "flymake"
         "flymake-shellcheck"
-        "clang-format"
       ];
     extraConfig = lib.readFile ./emacs/emacs.el;
   };
