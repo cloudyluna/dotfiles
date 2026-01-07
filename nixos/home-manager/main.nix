@@ -68,15 +68,16 @@ rec {
     signing = {
       format = "ssh";
       signByDefault = true;
+      # Import both of your private and publish SSH key!
       key = "${home.homeDirectory}/.ssh/id_momo.pub";
     };
     settings = {
+      init = {
+        defaultBranch = "main";
+      };
       user = {
         name = credentials.user.name;
         email = credentials.user.email;
-        init = {
-          defaultbranch = "main";
-        };
       };
     };
   };
