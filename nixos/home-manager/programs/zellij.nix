@@ -7,9 +7,9 @@ rec {
   programs.zellij = {
     enable = true;
     attachExistingSession = false;
-    exitShellOnExit = true;
-    enableBashIntegration = true;
-    enableFishIntegration = true;
+    exitShellOnExit = false;
+    enableBashIntegration = false;
+    enableFishIntegration = false;
     extraConfig = ''
       show_startup_tips false
       keybinds {
