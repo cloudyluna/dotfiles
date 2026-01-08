@@ -30,6 +30,9 @@
         local all      all    trust
       '';
     };
+    btrfs = {
+      autoScrub.enable = true;
+    };
     snapper = {
       configs = {
         home = {

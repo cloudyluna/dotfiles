@@ -16,6 +16,47 @@
     ./disko-config.nix
   ];
 
+  # Custom hardware configurations.
+  hardware.block.scheduler = {
+    # See https://wiki.archlinux.org/title/Improving_performance#The_scheduling_algorithms.
+    # For HDD.
+    "sd[a-z][0-9]*" = "bfq";
+  };
+  systemd.tmpfiles.settings = {
+    # See https://lore.kernel.org/linux-btrfs/051be284-6fe7-4982-a834-e46ce9c124a9@wdc.com/T/#m0e7d1685ca4cada0bac500b04c233ab32bec30d9.
+    # With dynamic periodic reclaim, if the system is below 10G unallocated
+    # space, then the cleaner thread will identify the best block groups to
+    # reclaim to get us back to 10G. It will get progressively more aggressive
+    # as unallocated trends towards 0. It will perform no reclaims when
+    # unallocated is above 10G.
+    #
+    # With dynamic periodic reclaim, if the system is below 10G unallocated
+    # space, then the cleaner thread will identify the best block groups to
+    # reclaim to get us back to 10G. It will get progressively more aggressive
+    # as unallocated trends towards 0. It will perform no reclaims when
+    # unallocated is above 10G.
+    btrfsDataPeriodicDynamicReclaim =
+      let
+        # TODO: UUID is fixed! Try to reuse from hardware-configuration or disko config.
+        dataPath = "/sys/fs/btrfs/a09d6f0a-7f4e-4b76-8fe4-6881656c0902/allocation/data";
+        fileOptions = {
+          w = {
+            group = "root";
+            user = "root";
+            argument = "1";
+          };
+        };
+      in
+      {
+        "${dataPath}/periodic_reclaim" = {
+          inherit (fileOptions) w;
+        };
+        "${dataPath}/dynamic_reclaim" = {
+          inherit (fileOptions) w;
+        };
+      };
+  };
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
