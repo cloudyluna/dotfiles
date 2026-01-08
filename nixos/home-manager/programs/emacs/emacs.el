@@ -25,9 +25,6 @@
   (add-hook 'text-mode #'display-fill-column-indicator-mode)
   (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
   (setopt display-fill-column-indicator-column t)
-  (let* ((*dir* (format "%s/workspace/" (getenv "HOME"))))
-    (make-directory *dir* t)
-    (setq default-directory *dir*))
 
   (load-theme 'modus-vivendi t)) ;; comes by default with emacs >=28.
 
@@ -181,7 +178,8 @@
   :custom
   (lsp-ui-peek-always-show nil)
   (lsp-ui-sideline-show-hover nil)
-  (lsp-ui-doc-enable t))
+  (lsp-ui-doc-enable t)
+  (pixel-scroll-precision-mode))
 
 (use-package rustic
   :bind (:map rustic-mode-map
