@@ -40,6 +40,7 @@ in
         "restart-emacs"
         "rustic"
         "haskell-mode"
+        "ultra-scroll"
         "lsp-mode"
         "lsp-ui"
         "lsp-haskell"

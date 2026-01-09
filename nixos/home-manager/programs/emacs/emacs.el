@@ -172,6 +172,13 @@
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
 
+(use-package ultra-scroll
+  :defer t
+  :after lsp-mode
+  :init
+  (setq scroll-conservatively 3
+        scroll-margin 0))
+
 (use-package lsp-ui
   :commands lsp-ui-mode
   :after lsp-mode
@@ -179,7 +186,7 @@
   (lsp-ui-peek-always-show nil)
   (lsp-ui-sideline-show-hover nil)
   (lsp-ui-doc-enable t)
-  (pixel-scroll-precision-mode))
+  (ultra-scroll-mode 1))
 
 (use-package rustic
   :bind (:map rustic-mode-map
