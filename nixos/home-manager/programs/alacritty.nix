@@ -11,7 +11,6 @@ in
     theme = "monokai";
     settings = {
       window = {
-        opacity = 0.9;
         startup_mode = "Maximized";
         title = "Terminal";
       };
