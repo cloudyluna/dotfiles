@@ -58,13 +58,16 @@
   };
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+
+  ## systemd-boot
+  boot.loader.systemd-boot = {
+    enable = true;
+    consoleMode = "max";
+  };
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # boot.loader.grub.enable = true;
-  # boot.loader.grub.efiSupport = true;
-  # boot.loader.grub.efiInstallAsRemovable = true;
-
+  boot.consoleLogLevel = 3;
+  boot.initrd.verbose = false;
   boot.kernelParams = [
     "zswap.enabled=1"
     "zswap.accept_threshold_percent=90"
@@ -72,6 +75,12 @@
     "zswap.max_pool_percent=50" # maximum percentage of RAM that zswap is allowed to use
     "zswap.shrinker_enabled=1" # whether to shrink the pool proactively on high memory pressure
     "zswap.zpool=zsmalloc"
+
+    "plymouth.use-simpledrm"
+    "quiet"
+    "boot.shell_on_fail"
+    "systemd.show_status=auto"
+    "udev.log_priority=3"
   ];
 
   boot.plymouth =
