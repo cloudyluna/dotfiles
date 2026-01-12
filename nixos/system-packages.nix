@@ -117,8 +117,6 @@
     zstd
 
     # utils
-    asciinema_3
-    asciinema-agg
     nixfmt-rfc-style
     cron
     nix-prefetch
@@ -126,7 +124,12 @@
     nix-prefetch-hg
     nix-prefetch-bzr
     nix-prefetch-github
-    xsel
+    perf # profile with performance counter
+    strace # system call tracer
+    lurk # system call tracer (pretty)
+    ltrace # library call tracer
+    lsof # list open files
+    lnav # log file viewer
     ripgrep # recursively searches directories for a regex pattern
     jq # A lightweight and flexible command-line JSON processor
     bat # cat with wings
@@ -137,24 +140,24 @@
     file # Show file info.
     glow # TUI markdown previewer
     tmux # TTY multiplexer
-    xclip
-    delta
-    yazi
+    xclip # x clipboard
+    delta # diff pager
+    yazi # TUI file manager
 
     # networking tools
     nmap # A utility for network discovery and security auditing
     transmission_4-gtk
 
     curl # fetch
-    wget
-    rsync
-    zsync
+    wget # fetch 
+    rsync # fetch & cp
+    zsync # remote chunking
 
     # office
     libreoffice-qt6-fresh
     calibre
-    evince
     thunderbird
+    papers
 
     # passwords security
     keepassxc
@@ -171,6 +174,7 @@
     gdb
     valgrind
     clang
+    lldb
     gnumake
     cmake
     ccache
