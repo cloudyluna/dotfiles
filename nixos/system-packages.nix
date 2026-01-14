@@ -107,6 +107,7 @@
     usbutils
     sysstat
     btop
+    efibootmgr
 
     # archives
     zip
