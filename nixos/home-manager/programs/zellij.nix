@@ -104,20 +104,6 @@ rec {
             {
               tab = {
                 _props = {
-                  name = "Files";
-                };
-                _children = [
-                  {
-                    pane = {
-                      command = "yazi";
-                    };
-                  }
-                ];
-              };
-            }
-            {
-              tab = {
-                _props = {
                   name = "News";
                 };
                 _children = [
