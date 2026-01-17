@@ -80,7 +80,6 @@ rec {
           "calibre-gui.desktop"
           "org.gnome.Nautilus.desktop"
           "firefox.desktop"
-          "dev.zed.Zed.desktop"
           "code.desktop"
           "emacs.desktop"
           "org.keepassxc.KeePassXC.desktop"
@@ -88,7 +87,6 @@ rec {
           "org.telegram.desktop.desktop"
           "audacious.desktop"
           "net.lutris.Lutris.desktop"
-          "org.cataclysmdda.CataclysmDDA.desktop"
           "org.gnome.Settings.desktop"
         ];
 
