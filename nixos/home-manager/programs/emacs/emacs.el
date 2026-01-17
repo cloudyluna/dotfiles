@@ -17,6 +17,7 @@
   (setq make-backup-files nil) ; stop creating ~ files
   (setq create-lockfiles nil)
   (setq use-short-answers t)
+  (setq make-pointer-invisible t)
 
   (set-face-attribute 'default nil :height 120)
 
@@ -122,7 +123,7 @@
 (use-package smartparens
   :config
   (require 'smartparens-config)
-  (smartparens-global-strict-mode))
+  (smartparens-global-mode))
 
 (use-package nyan-mode
   :config
@@ -219,3 +220,4 @@
   :after (flymake)
   :init (add-hook 'sh-mode-hook 'flymake-shellcheck-load))
 
+(use-package org-roam :defer t)

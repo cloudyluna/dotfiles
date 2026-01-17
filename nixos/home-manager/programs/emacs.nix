@@ -47,6 +47,7 @@ in
         "flymake"
         "flymake-shellcheck"
         "monokai-pro-theme"
+        "org-roam"
       ];
     extraConfig = lib.readFile ./emacs/emacs.el;
   };
