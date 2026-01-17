@@ -16,6 +16,7 @@
 
   (setq make-backup-files nil) ; stop creating ~ files
   (setq create-lockfiles nil)
+  (setq use-short-answers t)
 
   (set-face-attribute 'default nil :height 120)
 
