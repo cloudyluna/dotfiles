@@ -46,6 +46,7 @@ in
         "lsp-haskell"
         "flymake"
         "flymake-shellcheck"
+        "monokai-pro-theme"
       ];
     extraConfig = lib.readFile ./emacs/emacs.el;
   };

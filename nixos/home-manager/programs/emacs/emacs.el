@@ -26,7 +26,7 @@
   (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
   (setopt display-fill-column-indicator-column t)
 
-  (load-theme 'modus-vivendi t)) ;; comes by default with emacs >=28.
+  (load-theme 'monokai-pro t))
 
 (setup-basic-configurations)
 
