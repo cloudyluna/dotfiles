@@ -7,6 +7,8 @@
 {
   nixpkgs.overlays = [ ];
 
+  documentation.man.generateCaches = false;
+
   programs = {
     fish.enable = true;
     firefox.enable = true;
