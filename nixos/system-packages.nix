@@ -52,8 +52,6 @@
   environment.systemPackages = with pkgs; [
     snapper
     disko
-    nh
-    moreutils
 
     # Programming language toolings
     gnuplot_qt
@@ -64,23 +62,17 @@
     ffmpeg_7
     mpv
     audacious
-    gimp3
     yt-dlp
     syncplay
     telegram-desktop
     kiwix
     kiwix-tools
 
-    # git compat
-    taskwarrior3
-    taskwarrior-tui
-
     # database
     sqlite
 
     # editors
     vscode-fhs
-    zed-editor-fhs
     nixd
     nil
 
@@ -119,12 +111,9 @@
 
     # utils
     nixfmt-rfc-style
+    nixfmt-tree
     cron
-    nix-prefetch
-    nix-prefetch-git
-    nix-prefetch-hg
-    nix-prefetch-bzr
-    nix-prefetch-github
+    nix-prefetch-scripts
     perf # profile with performance counter
     strace # system call tracer
     lurk # system call tracer (pretty)
@@ -136,7 +125,7 @@
     bat # cat with wings
     eza # A modern replacement for ‘ls’
     fzf # A command-line fuzzy finder
-    shellcheck # Shell linter
+    shellcheck # A shell linter
     tree # List directory recursively as a tree view
     file # Show file info.
     glow # TUI markdown previewer
@@ -144,13 +133,12 @@
     xclip # x clipboard
     delta # diff pager
     yazi # TUI file manager
-
-    # networking tools
+    nh # better nixos manager
+    moreutils # collection of utils
     nmap # A utility for network discovery and security auditing
-    transmission_4-gtk
-
+    transmission_4-gtk # torrenting
     curl # fetch
-    wget # fetch 
+    wget # fetch
     rsync # fetch & cp
     zsync # remote chunking
 
@@ -158,7 +146,7 @@
     libreoffice-qt6-fresh
     calibre
     thunderbird
-    papers
+    papers # documents viewer
 
     # passwords security
     keepassxc
@@ -172,7 +160,6 @@
     openssl
     pkg-config
     git
-    gdb
     valgrind
     clang
     lldb
@@ -184,7 +171,5 @@
 
     # gaming
     lutris
-    winetricks
-    cataclysm-dda
   ];
 }
