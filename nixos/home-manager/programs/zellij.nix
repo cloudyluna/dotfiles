@@ -12,6 +12,7 @@ rec {
     enableFishIntegration = false;
     extraConfig = ''
       show_startup_tips false
+      default_mode "locked"
       keybinds {
           unbind "Ctrl g"
           locked {

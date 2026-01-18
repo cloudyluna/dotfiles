@@ -217,7 +217,16 @@
 (use-package flymake :defer t)
 
 (use-package flymake-shellcheck
-  :after (flymake)
+  :after flymake
   :init (add-hook 'sh-mode-hook 'flymake-shellcheck-load))
 
 (use-package org-roam :defer t)
+
+(use-package ob-nix :after org-mode)
+(use-package ox-gfm :after org-mode)
+
+(add-hook 'org-mode-hook (lambda () (org-babel-do-load-languages
+                                     'org-babel-load-languages
+                                     '((emacs-lisp . t)
+                                       (nix . t)
+                                       (lua . t)))))
