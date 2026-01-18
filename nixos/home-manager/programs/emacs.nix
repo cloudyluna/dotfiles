@@ -48,7 +48,6 @@ in
         "flymake-shellcheck"
         "monokai-pro-theme"
         "org-roam"
-        "ob-nix"
         "ox-gfm"
       ];
     extraConfig = lib.readFile ./emacs/emacs.el;

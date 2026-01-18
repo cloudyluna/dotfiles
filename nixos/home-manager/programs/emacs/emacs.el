@@ -18,6 +18,9 @@
   (setq create-lockfiles nil)
   (setq use-short-answers t)
   (setq make-pointer-invisible t)
+  (global-set-key (kbd "C-c l") #'org-store-link)
+  (global-set-key (kbd "C-c a") #'org-agenda)
+  (global-set-key (kbd "C-c c") #'org-capture)
 
   (set-face-attribute 'default nil :height 120)
 
@@ -222,11 +225,4 @@
 
 (use-package org-roam :defer t)
 
-(use-package ob-nix :after org-mode)
 (use-package ox-gfm :after org-mode)
-
-(add-hook 'org-mode-hook (lambda () (org-babel-do-load-languages
-                                     'org-babel-load-languages
-                                     '((emacs-lisp . t)
-                                       (nix . t)
-                                       (lua . t)))))
