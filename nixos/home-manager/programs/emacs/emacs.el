@@ -120,8 +120,11 @@
   :defer t
   :bind ("C-c p" . projectile-command-map))
 
-
 (use-package magit :defer t)
+
+(use-package diff-hl :after magit
+  :config
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 
 (use-package smartparens
   :config
@@ -178,7 +181,6 @@
   :commands lsp)
 
 (use-package ultra-scroll
-  :defer t
   :after lsp-mode
   :init
   (setq scroll-conservatively 3

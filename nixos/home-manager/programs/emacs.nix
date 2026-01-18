@@ -49,6 +49,7 @@ in
         "monokai-pro-theme"
         "org-roam"
         "ox-gfm"
+        "diff-hl"
       ];
     extraConfig = lib.readFile ./emacs/emacs.el;
   };
