@@ -1,14 +1,22 @@
+;;; -*- lexical-binding: t; -*-
+
 (defun setup-basic-configurations ()
   "Setup all needed *basic* configurations for minimal Emacs usage.
 
   Of course, it's personally opinionated to me.
   "
-  (setq lexical-binding t)
   (require 'cl-lib)
   (setq-default indent-tabs-mode nil)
   (setq column-number-mode t)
   (global-display-line-numbers-mode)
   (xterm-mouse-mode 1) ;; Enable mouse support in the terminal.
+
+  (global-unset-key (kbd "C-x C-+"))
+  (global-unset-key (kbd "C-x C--"))
+  (global-unset-key (kbd "C-x C-="))
+  (global-set-key (kbd "<C-wheel-up>") 'ignore)
+  (global-set-key (kbd "<C-wheel-down>") 'ignore)
+  (global-set-key (kbd "<pinch>") 'ignore)
 
   
   (setq ring-bell-function 'ignore) ; shush the annoying bell sound
@@ -18,6 +26,7 @@
   (setq create-lockfiles nil)
   (setq use-short-answers t)
   (setq make-pointer-invisible t)
+
   (global-set-key (kbd "C-c l") #'org-store-link)
   (global-set-key (kbd "C-c a") #'org-agenda)
   (global-set-key (kbd "C-c c") #'org-capture)
@@ -91,7 +100,7 @@
 
 (use-package sly :defer t)
 
-(defun augment-vterm (x)
+(defun augment-vterm ()
   (setq display-line-numbers nil))
 
 ;; requires libvterm, cmake and libtool
@@ -228,3 +237,10 @@
 (use-package org-roam :defer t)
 
 (use-package ox-gfm :after org-mode)
+
+(use-package format-all
+  :commands format-all-mode
+  :hook (prog-mode . format-all-mode)
+  :config
+  (setq-default format-all-formatters
+        '(("Nix" nixfmt) ("C" clang-format) ("C++" clang-format))))

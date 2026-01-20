@@ -50,6 +50,7 @@ in
         "org-roam"
         "ox-gfm"
         "diff-hl"
+        "format-all"
       ];
     extraConfig = lib.readFile ./emacs/emacs.el;
   };
