@@ -166,6 +166,7 @@
     valgrind
     clang
     lldb
+    gdb
     gnumake
     cmake
     ccache

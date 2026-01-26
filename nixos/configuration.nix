@@ -76,27 +76,11 @@
     "zswap.shrinker_enabled=1" # whether to shrink the pool proactively on high memory pressure
     "zswap.zpool=zsmalloc"
 
-    "plymouth.use-simpledrm"
     "quiet"
     "boot.shell_on_fail"
     "systemd.show_status=auto"
     "udev.log_priority=3"
   ];
-
-  boot.plymouth =
-    let
-      chosenAdiTheme = "green_blocks";
-    in
-    {
-      enable = true;
-      theme = chosenAdiTheme;
-      themePackages = with pkgs; [
-        (adi1090x-plymouth-themes.override {
-          selected_themes = [ chosenAdiTheme ];
-        })
-        plymouth-blahaj-theme # blahaj
-      ];
-    };
 
   # Enable the Flakes feature and the accompanying new nix command-line tool
   nix.settings.experimental-features = [
