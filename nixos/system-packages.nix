@@ -25,14 +25,6 @@
   services = {
     flatpak.enable = true;
     udev.packages = [ pkgs.gnome-settings-daemon ];
-    postgresql = {
-      enable = true;
-      ensureDatabases = [ "mydatabase" ];
-      authentication = pkgs.lib.mkOverride 10 ''
-        #type database DBUser auth-method
-        local all      all    trust
-      '';
-    };
     btrfs = {
       autoScrub.enable = true;
     };
