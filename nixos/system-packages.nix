@@ -65,7 +65,6 @@
     ffmpeg_7
     mpv
     audacious
-    yt-dlp
     syncplay
     telegram-desktop
     kiwix
