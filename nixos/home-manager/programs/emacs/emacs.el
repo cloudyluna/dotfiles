@@ -38,7 +38,7 @@
 
   (add-hook 'text-mode #'display-fill-column-indicator-mode)
   (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
-  (setopt display-fill-column-indicator-column t)
+  (setopt display-fill-column-indicator-column 100)
 
   (load-theme 'monokai-pro t))
 
