@@ -1,53 +1,25 @@
-# Number of spaces per indentation step
-indentation: 2
-
-# Max line length for automatic line breaking
-column-limit: 80
-
-# Styling of arrows in type signatures (choices: trailing, leading, or leading-args)
+# Generated from web app, for more information, see: https://fourmolu.github.io/config/
+indentation: 4
+column-limit: 100
 function-arrows: trailing
-
-# How to place commas in multi-line lists, records, etc. (choices: leading or trailing)
 comma-style: leading
-
-# Styling of import/export lists (choices: leading, trailing, or diff-friendly)
+record-style: aligned
 import-export-style: diff-friendly
-
-# Whether to full-indent or half-indent 'where' bindings past the preceding body
-indent-wheres: false
-
-# Whether to leave a space before an opening record brace
+import-grouping: legacy
+indent-wheres: true
 record-brace-space: false
-
-# Number of spaces between top-level declarations
 newlines-between-decls: 2
-
-# How to print Haddock comments (choices: single-line, multi-line, or multi-line-compact)
 haddock-style: multi-line
-
-# How to print module docstring
 haddock-style-module: null
-
-# Styling of let blocks (choices: auto, inline, newline, or mixed)
+haddock-location-signature: auto
 let-style: auto
-
-# How to align the 'in' keyword with respect to the 'let' keyword (choices: left-align, right-align, or no-space)
 in-style: right-align
-
-# Whether to put parentheses around a single constraint (choices: auto, always, or never)
+if-style: indented
 single-constraint-parens: always
-
-# Whether to put parentheses around a single deriving class (choices: auto, always, or never)
 single-deriving-parens: always
-
-# Output Unicode syntax (choices: detect, always, or never)
+sort-constraints: true
+sort-derived-classes: true
+sort-deriving-clauses: true
+trailing-section-operators: true
 unicode: never
-
-# Give the programmer more choice on where to insert blank lines
 respectful: true
-
-# Fixity information for operators
-fixities: []
-
-# Module reexports Fourmolu should know about
-reexports: []
