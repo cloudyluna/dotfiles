@@ -49,7 +49,6 @@
 ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
 ;; and `package-pinned-packages`. Most users will not need or want to do this.
 ;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-(package-initialize)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -67,15 +66,17 @@
 ;; my preferred elisp libraries
 
 (use-package dash
+  :ensure t
   :config (global-dash-fontify-mode))
 
-(use-package diminish)
+(use-package diminish :ensure t)
 
-(use-package ivy)
+(use-package ivy :ensure t)
 
-(use-package counsel)
+(use-package counsel :ensure t)
 
 (use-package swiper
+  :ensure t
   :diminish ivy-mode
   :bind (("C-s" . swiper)
          ("C-c C-r" . ivy-resume)
@@ -92,19 +93,20 @@
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "%d/%d "))
 
-(use-package yaml :defer t)
+(use-package yaml :ensure t :defer t)
 
-(use-package nix-mode :defer t)
+(use-package nix-mode :ensure t :defer t)
 
-(use-package lua-mode :defer t)
+(use-package lua-mode :ensure t :defer t)
 
-(use-package sly :defer t)
+(use-package sly :ensure t :defer t)
 
 (defun augment-vterm ()
   (setq display-line-numbers nil))
 
 ;; requires libvterm, cmake and libtool
 (use-package vterm
+  :ensure t
   :config
   (define-key vterm-mode-map (kbd "C-q") #'vterm-send-next-key)
   (advice-add
@@ -113,56 +115,77 @@
    #'augment-vterm))
 
 (use-package multi-vterm
+  :ensure t
   :config (advice-add 'multi-vterm :filter-return #'augment-vterm))
 
 (use-package treemacs
+  :ensure t
   :defer t
   :bind (:map global-map ("C-x t t" . treemacs)))
 
-(use-package projectile-ripgrep :after (projectile))
+(use-package projectile-ripgrep
+  :ensure t
+  :after (projectile))
 
-(use-package treemacs-projectile :after (treemacs projectile))
+(use-package treemacs-projectile
+  :ensure t
+  :after (treemacs projectile))
 
-(use-package treemacs-magit :after (treemacs magit))
+(use-package treemacs-magit
+  :ensure t
+  :after (treemacs magit))
 
 (use-package projectile
+  :ensure t
   :defer t
   :bind ("C-c p" . projectile-command-map))
 
-(use-package magit :defer t)
+(use-package magit
+  :ensure t
+  :defer t)
 
-(use-package diff-hl :after magit
+(use-package diff-hl
+  :ensure t
+  :after magit
   :config
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 
 (use-package smartparens
+  :ensure t
   :config
   (require 'smartparens-config)
   (smartparens-global-mode))
 
 (use-package nyan-mode
+  :ensure t
   :config
   (nyan-mode))
 
 (use-package vlf
+  :ensure t
   :config
   (require 'vlf-setup))
 
 (use-package direnv
+  :ensure t
   :config
   (direnv-mode))
 
 (use-package company
+  :ensure t
   :config (add-hook 'after-init-hook 'global-company-mode))
 
 (use-package move-text
+  :ensure t
   :defer t
   :config (move-text-default-bindings))
 
-(use-package restart-emacs)
+(use-package restart-emacs
+  :ensure t)
 
 ;; LSP/EGLOT/Programming env
 (use-package lsp-mode
+  :ensure t
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c C-l"
@@ -190,12 +213,14 @@
   :commands lsp)
 
 (use-package ultra-scroll
+  :ensure t
   :after lsp-mode
   :init
   (setq scroll-conservatively 3
         scroll-margin 0))
 
 (use-package lsp-ui
+  :ensure t
   :commands lsp-ui-mode
   :after lsp-mode
   :custom
@@ -205,6 +230,7 @@
   (ultra-scroll-mode 1))
 
 (use-package rustic
+  :ensure t
   :bind (:map rustic-mode-map
               ("M-j" . lsp-ui-imenu)
               ("M-?" . lsp-find-references)
@@ -224,23 +250,30 @@
   (setq rustic-format-on-save t)
   (add-to-list 'direnv-non-file-modes 'rustic-mode))
 
-(use-package haskell-mode)
+(use-package haskell-mode
+  :ensure t)
 
-(use-package lsp-haskell :after (lsp-mode))
+(use-package lsp-haskell :ensure t
+  :after (lsp-mode))
 
-(use-package flymake :defer t)
+(use-package flymake :ensure t
+  :defer t)
 
 (use-package flymake-shellcheck
+  :ensure t
   :after flymake
   :init (add-hook 'sh-mode-hook 'flymake-shellcheck-load))
 
-(use-package org-roam :defer t)
+(use-package org-roam :ensure t
+  :defer t)
 
-(use-package ox-gfm :after org-mode)
+(use-package ox-gfm :ensure t
+  :after org-mode)
 
 (use-package format-all
+  :ensure t
   :commands format-all-mode
   :hook (prog-mode . format-all-mode)
   :config
   (setq-default format-all-formatters
-        '(("Nix" nixfmt) ("C" clang-format) ("C++" clang-format))))
+                '(("Nix" nixfmt) ("C" clang-format) ("C++" clang-format))))

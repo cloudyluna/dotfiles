@@ -39,6 +39,10 @@ rec {
       source = ./data/wallpapers;
       recursive = true;
     };
+
+    ".emacs" = {
+      source = ./data/.emacs.el;
+    };
   };
   home.sessionPath = [
     "$HOME/.local/bin"
