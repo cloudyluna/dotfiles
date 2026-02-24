@@ -110,8 +110,8 @@ rec {
                 _children = [
                   {
                     pane = {
-                      # Install manually first with cargo install feedr.
-                      command = "feedr";
+                      # Install manually first with cargo install --git https://github.com/ckampfe/russ
+                      command = "russ read";
                     };
                   }
                 ];
