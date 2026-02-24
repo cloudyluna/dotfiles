@@ -82,6 +82,7 @@ rec {
           "org.gnome.Nautilus.desktop"
           "firefox.desktop"
           "org.gnome.Epiphany.desktop"
+          "dev.zed.Zed.desktop"
           "code.desktop"
           "emacs.desktop"
           "org.keepassxc.KeePassXC.desktop"
