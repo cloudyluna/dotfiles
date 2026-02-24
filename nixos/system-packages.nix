@@ -135,6 +135,7 @@
     wget # fetch
     rsync # fetch & cp
     zsync # remote chunking
+    russ # RSS feed reader
 
     # office
     libreoffice-qt6-fresh
