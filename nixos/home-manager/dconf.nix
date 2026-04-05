@@ -89,6 +89,7 @@ rec {
           "thunderbird.desktop"
           "org.telegram.desktop.desktop"
           "audacious.desktop"
+          "org.cataclysmbn.CataclysmBN.desktop"
           "net.lutris.Lutris.desktop"
           "org.gnome.Settings.desktop"
         ];
