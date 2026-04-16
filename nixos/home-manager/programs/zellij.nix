@@ -111,7 +111,7 @@ rec {
                   {
                     pane = {
                       command = "russ";
-                      args = [ 
+                      args = [
                         "read"
                       ];
                     };
