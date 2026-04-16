@@ -10,7 +10,6 @@
   documentation.man.generateCaches = false;
 
   programs = {
-    nix-ld.enable = true;
     fish.enable = true;
     firefox.enable = true;
     autojump.enable = true;
@@ -135,6 +134,7 @@
     wget # fetch
     rsync # fetch & cp
     zsync # remote chunking
+    russ # RSS feed reader
 
     # office
     libreoffice-qt6-fresh

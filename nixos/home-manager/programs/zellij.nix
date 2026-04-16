@@ -110,8 +110,10 @@ rec {
                 _children = [
                   {
                     pane = {
-                      # Install manually first with cargo install feedr.
-                      command = "feedr";
+                      command = "russ";
+                      args = [
+                        "read"
+                      ];
                     };
                   }
                 ];

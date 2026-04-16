@@ -23,11 +23,11 @@ rec {
 
       "org/gnome/desktop/session" = {
         # Dim screen.
-        idle-delay = lib.hm.gvariant.mkUint32 (minutesToSeconds 15);
+        idle-delay = lib.hm.gvariant.mkUint32 (minutesToSeconds 140);
       };
 
       "org/gnome/settings-daemon/plugins/power" = {
-        sleep-inactive-ac-timeout = minutesToSeconds 80;
+        sleep-inactive-ac-timeout = minutesToSeconds 180;
         sleep-inactive-ac-type = "suspend";
         sleep-inactive-battery-timeout = minutesToSeconds 30;
         sleep-inactive-battery-type = "suspend";
@@ -82,12 +82,14 @@ rec {
           "org.gnome.Nautilus.desktop"
           "firefox.desktop"
           "org.gnome.Epiphany.desktop"
+          "dev.zed.Zed.desktop"
           "code.desktop"
           "emacs.desktop"
           "org.keepassxc.KeePassXC.desktop"
           "thunderbird.desktop"
           "org.telegram.desktop.desktop"
           "audacious.desktop"
+          "org.cataclysmbn.CataclysmBN.desktop"
           "net.lutris.Lutris.desktop"
           "org.gnome.Settings.desktop"
         ];
