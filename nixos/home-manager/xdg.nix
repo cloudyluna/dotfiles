@@ -7,7 +7,7 @@ let
   home = config.home;
 in
 rec {
-    xdg = {
+  xdg = {
     enable = true;
     userDirs = {
       enable = true;
@@ -20,6 +20,7 @@ rec {
       entries = [
         "${pkgs.audacious}/share/applications/audacious.desktop"
         "${pkgs.telegram-desktop}/share/applications/org.telegram.desktop.desktop"
+        "${pkgs.thunderbird}/share/applications/thunderbird.desktop"
       ];
     };
     desktopEntries = {
