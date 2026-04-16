@@ -110,7 +110,10 @@ rec {
                 _children = [
                   {
                     pane = {
-                      command = "russ read";
+                      command = "russ";
+                      args = [ 
+                        "read"
+                      ];
                     };
                   }
                 ];
