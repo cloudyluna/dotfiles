@@ -65,6 +65,10 @@ rec {
   # FIXME: Cannot find credentials var in a standalone git.nix module.
   programs.git = {
     enable = true;
+    ignores = [
+      ".direnv/"
+      ".envrc"
+    ];
     signing = {
       format = "ssh";
       signByDefault = true;
