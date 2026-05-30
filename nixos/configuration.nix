@@ -76,10 +76,7 @@
     "zswap.shrinker_enabled=1" # whether to shrink the pool proactively on high memory pressure
     "zswap.zpool=zsmalloc"
 
-    "quiet"
     "boot.shell_on_fail"
-    "systemd.show_status=auto"
-    "udev.log_priority=3"
   ];
 
   # Enable the Flakes feature and the accompanying new nix command-line tool
@@ -88,7 +85,10 @@
     "flakes"
   ];
 
-  nix.settings.trusted-users = [ "root" "momo" ];
+  nix.settings.trusted-users = [
+    "root"
+    "momo"
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
