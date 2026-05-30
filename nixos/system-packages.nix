@@ -7,7 +7,7 @@
 {
   nixpkgs.overlays = [ ];
 
-  documentation.man.generateCaches = false;
+  documentation.man.cache.enable = false;
 
   programs = {
     fish.enable = true;
@@ -103,7 +103,7 @@
     zstd
 
     # utils
-    nixfmt-rfc-style
+    nixfmt
     nixfmt-tree
     cron
     nix-prefetch-scripts
@@ -125,7 +125,6 @@
     tmux # TTY multiplexer
     xclip # x clipboard
     delta # diff pager
-    yazi # TUI file manager
     nh # better nixos manager
     moreutils # collection of utils
     nmap # A utility for network discovery and security auditing

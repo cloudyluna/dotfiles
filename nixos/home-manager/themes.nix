@@ -8,6 +8,7 @@ in
 rec {
   gtk = {
     enable = true;
+    gtk4.theme = null;
     colorScheme = "dark";
     theme = {
       name = "Adwaita-dark";

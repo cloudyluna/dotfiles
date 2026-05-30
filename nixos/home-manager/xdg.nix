@@ -14,6 +14,7 @@ rec {
       createDirectories = true;
       publicShare = null;
       templates = null;
+      setSessionVariables = false;
     };
     autostart = {
       enable = true;

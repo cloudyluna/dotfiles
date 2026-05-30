@@ -19,7 +19,7 @@ rec {
     ssh = {
       enable = true;
       enableDefaultConfig = false;
-      matchBlocks = {
+      settings = {
         "*" = {
           addKeysToAgent = "yes";
         };
@@ -53,7 +53,6 @@ rec {
 
     direnv.enable = true;
     autojump.enable = true;
-    yazi.enable = true;
     lazygit = {
       enable = true;
       settings = {
