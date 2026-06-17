@@ -60,18 +60,10 @@ rec {
             {
               tab = {
                 _props = {
-                  name = "Main";
+                  name = "Main Shell";
                   focus = true;
                 };
                 _children = [
-                  {
-                    pane = {
-                      command = "emacs";
-                      args = [
-                        "-nw"
-                      ];
-                    };
-                  }
                   {
                     pane = {
                       split_direction = "horizontal";
@@ -83,20 +75,12 @@ rec {
             {
               tab = {
                 _props = {
-                  name = "Docs: NixOS";
+                  name = "Misc Shell";
                 };
                 _children = [
                   {
                     pane = {
-                      split_direction = "horizontal";
-                      command = "man";
-                      args = "home-configuration.nix";
-                    };
-                  }
-                  {
-                    pane = {
-                      command = "man";
-                      args = "configuration.nix";
+                      command = "fish";
                     };
                   }
                 ];
@@ -114,20 +98,6 @@ rec {
                       args = [
                         "read"
                       ];
-                    };
-                  }
-                ];
-              };
-            }
-            {
-              tab = {
-                _props = {
-                  name = "Shell";
-                };
-                _children = [
-                  {
-                    pane = {
-                      command = "fish";
                     };
                   }
                 ];
