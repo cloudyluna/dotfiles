@@ -76,26 +76,6 @@ rec {
 
       "org/gnome/shell" = {
 
-        favorite-apps = [
-          "Alacritty.desktop"
-          "btop.desktop"
-          "calibre-gui.desktop"
-          "org.gnome.Papers.desktop"
-          "org.gnome.Nautilus.desktop"
-          "firefox.desktop"
-          "org.gnome.Epiphany.desktop"
-          "dev.zed.Zed.desktop"
-          "code.desktop"
-          "emacs.desktop"
-          "org.keepassxc.KeePassXC.desktop"
-          "thunderbird.desktop"
-          "org.telegram.desktop.desktop"
-          "audacious.desktop"
-          "org.cataclysmbn.CataclysmBN.desktop"
-          "net.lutris.Lutris.desktop"
-          "org.gnome.Settings.desktop"
-        ];
-
         # See ../desktop-environment.nix for extension packages.
         enabled-extensions = [
           "appindicatorsupport@rgcjonas.gmail.com"
