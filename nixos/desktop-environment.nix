@@ -42,5 +42,6 @@
     removable-drive-menu
     wallpaper-slideshow
     lockscreen-extension
+    tiling-shell
   ];
 }

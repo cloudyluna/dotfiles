@@ -81,6 +81,7 @@ rec {
           "drive-menu@gnome-shell-extensions.gcampax.github.com"
           "azwallpaper@azwallpaper.gitlab.com"
           "lockscreen-extension@pratap.fastmail.fm"
+          "tilingshell@ferrarodomenico.com"
         ];
       };
 
