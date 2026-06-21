@@ -10,6 +10,9 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    # pinned
+    nixpkgs-pinned-2605.url = "github:nixos/nixpkgs/a0374025a863d007d98e3297f6aa46cc3141c2f0";
   };
 
   outputs =
@@ -18,6 +21,7 @@
       flake-utils,
       disko,
       home-manager,
+      nixpkgs-pinned-2605,
       ...
     }@inputs:
     {
@@ -30,6 +34,11 @@
           };
           modules =
             let
+              pinned-2605 = import nixpkgs-pinned-2605 {
+                inherit system;
+                config.allowUnfree = true;
+              };
+
               credentials = import ./public-credentials.nix;
               myNetworking = import ./networking.nix {
                 inherit credentials;
@@ -40,7 +49,12 @@
               mySound = import ./sound.nix;
               myDesktopEnvironment = import ./desktop-environment.nix;
               mySystemPackages = import ./system-packages.nix {
-                inherit pkgs inputs credentials;
+                inherit
+                  pkgs
+                  inputs
+                  credentials
+                  pinned-2605
+                  ;
               };
               mySystemUsers = import ./system-users.nix {
                 inherit pkgs credentials;

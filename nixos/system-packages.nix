@@ -1,5 +1,6 @@
 {
   pkgs,
+  pinned-2605,
   inputs,
   credentials,
   ...
@@ -58,8 +59,6 @@
     audacious
     syncplay
     telegram-desktop
-    kiwix
-    kiwix-tools
 
     # database
     sqlite
@@ -164,6 +163,7 @@
     ninja
 
     # gaming
-    lutris
+    pinned-2605.wine
+    pinned-2605.winetricks
   ];
 }
