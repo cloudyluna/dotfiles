@@ -56,10 +56,10 @@ rec {
       };
 
       "org/gnome/desktop/wm/keybindings" = {
-        switch-to-workspace-1 = [ "<Super>1" ];
-        switch-to-workspace-2 = [ "<Super>2" ];
-        switch-to-workspace-3 = [ "<Super>3" ];
-        switch-to-workspace-4 = [ "<Super>4" ];
+        switch-to-workspace-1 = [ "<Ctrl>F1" ];
+        switch-to-workspace-2 = [ "<Ctrl>F2" ];
+        switch-to-workspace-3 = [ "<Ctrl>F3" ];
+        switch-to-workspace-4 = [ "<Ctrl>F4" ];
       };
 
       "org/gnome/desktop/peripherals/mouse" = {
