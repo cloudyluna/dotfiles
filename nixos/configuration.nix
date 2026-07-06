@@ -38,7 +38,7 @@
     btrfsDataPeriodicDynamicReclaim =
       let
         # TODO: UUID is fixed! Try to reuse from hardware-configuration or disko config.
-        dataPath = "/sys/fs/btrfs/a09d6f0a-7f4e-4b76-8fe4-6881656c0902/allocation/data";
+        dataPath = "/sys/fs/btrfs/2bde2b20-b167-426b-99fd-af9cb7554743/allocation/data";
         fileOptions = {
           w = {
             group = "root";
