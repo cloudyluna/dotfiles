@@ -28,20 +28,6 @@
     btrfs = {
       autoScrub.enable = true;
     };
-    snapper = {
-      configs = {
-        home = {
-          SUBVOLUME = "/home";
-          FSTYPE = "btrfs";
-          ALLOW_USERS = [ credentials.user.name ];
-          TIMELINE_CREATE = false;
-          TIMELINE_CLEANUP = false;
-          TIMELINE_LIMIT_DAILY = 0;
-          TIMELINE_LIMIT_WEEKLY = 0;
-          TIMELINE_LIMIT_MONTHLY = 0;
-        };
-      };
-    };
   };
 
   environment.systemPackages = with pkgs; [

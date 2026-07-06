@@ -3,7 +3,7 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/sda"; # Could be anything, depending on the hardware.
+        device = "/dev/nvme0n1"; # Could be anything, depending on the hardware.
         content = {
           type = "gpt";
           partitions = {
@@ -35,14 +35,6 @@
                     };
                     "@home" = {
                       mountpoint = "/home";
-                      mountOptions = [
-                        "compress=zstd:1"
-                        "noatime"
-                      ];
-                    };
-                    # For use with snapper.
-                    "@snapshots" = {
-                      mountpoint = "/home/.snapshots";
                       mountOptions = [
                         "compress=zstd:1"
                         "noatime"
