@@ -40,7 +40,7 @@
   (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
   (setopt display-fill-column-indicator-column 100)
 
-  (load-theme 'monokai-pro t))
+  (load-theme 'modus-vivendi t))
 
 (setup-basic-configurations)
 
