@@ -151,5 +151,6 @@
     # gaming
     pinned-2605.wine
     pinned-2605.winetricks
+    pinned-2605.lutris
   ];
 }
